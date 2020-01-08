@@ -17,7 +17,7 @@ class App extends Component<Props, State> {
       movies: [],
       searchTerm: ""
     };
-    this.apiKey = process.env.REACT_APP_API_KEY;
+    this.apiKey = "794ebc7b38b293ba24990ded99d3d9eb";
   }
 
   fetchMovies = () => {
@@ -31,17 +31,23 @@ class App extends Component<Props, State> {
       });
   };
 
-  handleSearch = (e: React.MouseEvent): void => {
+  handleSearch = (e: React.FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
     this.fetchMovies();
+  };
+
+  handleChange = (e: any) => {
+    this.setState({ searchTerm: e.target.value });
   };
 
   render() {
     return (
       <div className="App">
         <Navbar></Navbar>
-        // @ts-ignore
-        <SearchArea handleSearch={this.handleSearch}></SearchArea>
+        <SearchArea
+          handleSearch={this.handleSearch}
+          handleChange={this.handleChange}
+        ></SearchArea>
       </div>
     );
   }

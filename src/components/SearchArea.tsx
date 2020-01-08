@@ -10,13 +10,14 @@ const SearchContainer = styled.div`
   margin-top: 20px;
 `;
 
-const SearchArea = () => {
+const SearchArea = (props:any) => {
   return (
     <SearchContainer>
       <section>
-        <form action="">
+        <form action="" onSubmit={props.handleSearch}>
           <div>
             <Search
+            onChange={props.handleChange}
               placeholder="Search movies"
               enterButton="Search"
               size="large"
