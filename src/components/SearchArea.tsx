@@ -17,7 +17,7 @@ const SearchArea = () => {
         <form action="">
           <div>
             <Search
-              placeholder="input search text"
+              placeholder="Search movies"
               enterButton="Search"
               size="large"
               style={{ width: 500 }}
