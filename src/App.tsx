@@ -17,10 +17,11 @@ class App extends Component<Props, State> {
       movies: [],
       searchTerm: ""
     };
-    this.apiKey = "794ebc7b38b293ba24990ded99d3d9eb";
+    this.apiKey = process.env.REACT_APP_API;
   }
 
   fetchMovies = () => {
+  
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
     )
