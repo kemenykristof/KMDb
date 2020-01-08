@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
-import SearchArea from "./SearchArea";
+import Navbar from "./components/Navbar";
+import SearchArea from "./components/SearchArea";
 
 const App: React.FC = () => {
   return (
