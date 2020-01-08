@@ -5,7 +5,8 @@ import SearchArea from "./components/SearchArea";
 interface Props {}
 
 interface State {
-  movies: [];
+  movies: any;
+  searchTerm: string;
 }
 
 class App extends Component<Props, State> {
@@ -13,16 +14,34 @@ class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      movies: []
+      movies: [],
+      searchTerm: ""
     };
     this.apiKey = process.env.REACT_APP_API_KEY;
   }
+
+  fetchMovies = () => {
+    fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
+    )
+      .then(data => data.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ movies: [...data.results] });
+      });
+  };
+
+  handleSearch = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    this.fetchMovies();
+  };
 
   render() {
     return (
       <div className="App">
         <Navbar></Navbar>
-        <SearchArea></SearchArea>
+        // @ts-ignore
+        <SearchArea handleSearch={this.handleSearch}></SearchArea>
       </div>
     );
   }
