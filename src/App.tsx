@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import SearchArea from "./components/SearchArea";
+import MovieList from "./components/MovieList";
 
 interface Props {}
 
@@ -21,7 +22,6 @@ class App extends Component<Props, State> {
   }
 
   fetchMovies = () => {
-  
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
     )
@@ -49,6 +49,7 @@ class App extends Component<Props, State> {
           handleSearch={this.handleSearch}
           handleChange={this.handleChange}
         ></SearchArea>
+        <MovieList movies={this.state.movies}/>
       </div>
     );
   }
