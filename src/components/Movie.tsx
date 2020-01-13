@@ -4,7 +4,7 @@ import { Card } from "antd";
 const { Meta } = Card;
 
 interface Props {
-    image:any
+  image: any;
 }
 
 const Movie = (props: Props) => {
@@ -13,10 +13,18 @@ const Movie = (props: Props) => {
       hoverable
       style={{ width: 240 }}
       cover={
-        <img
-          alt="example"
-          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-        />
+        props.image === null ? (
+          <img
+            alt="movie"
+            src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
+          />
+        ) : (
+          <img
+            src={`http://image.tmdb.org/t/p/w185${props.image}`}
+            alt="movie"
+            style={{ width: "100%", height: 360 }}
+          />
+        )
       }
     >
       <Meta title="Movie" description="themoviedb.com" />

@@ -11,7 +11,7 @@ const MovieList = (props: Props) => {
       <div>
         <div>
           {props.movies.map((movie: any, index: any) => {
-            return <Movie key={index} image={movie.poster.path}></Movie>;
+            return <Movie key={index} image={movie.poster_path}></Movie>;
           })}
         </div>
       </div>
