@@ -7,27 +7,26 @@ interface Props {
 }
 
 const MovieContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  margin-top: 25px;
 `;
 
 const MovieList = (props: Props) => {
   return (
     <MovieContainer>
-      <div>
-        <div>
-          {props.movies.map((movie: any, index: any) => {
-            return (
-              <Movie
-                key={index}
-                image={movie.poster_path}
-                title={movie.original_title}
-                overview={movie.overview}
-              ></Movie>
-            );
-          })}
-        </div>
-      </div>
+      {props.movies.map((movie: any, index: any) => {
+        return (
+          <Movie
+            key={index}
+            image={movie.poster_path}
+            title={movie.original_title}
+           
+          ></Movie>
+        );
+      })}
     </MovieContainer>
   );
 };
