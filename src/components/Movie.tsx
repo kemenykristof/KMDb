@@ -5,6 +5,8 @@ const { Meta } = Card;
 
 interface Props {
   image: any;
+  title: string;
+  overview: string;
 }
 
 const Movie = (props: Props) => {
@@ -27,7 +29,7 @@ const Movie = (props: Props) => {
         )
       }
     >
-      <Meta title="Movie" description="themoviedb.com" />
+      <Meta title={props.title} description={props.overview} />
     </Card>
   );
 };

@@ -11,7 +11,14 @@ const MovieList = (props: Props) => {
       <div>
         <div>
           {props.movies.map((movie: any, index: any) => {
-            return <Movie key={index} image={movie.poster_path}></Movie>;
+            return (
+              <Movie
+                key={index}
+                image={movie.poster_path}
+                title={movie.original_title}
+                overview={movie.overview}
+              ></Movie>
+            );
           })}
         </div>
       </div>
