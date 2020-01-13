@@ -1,13 +1,19 @@
 import React from "react";
 import Movie from "./Movie";
+import styled from "@emotion/styled";
 
 interface Props {
   movies: any;
 }
 
+const MovieContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const MovieList = (props: Props) => {
   return (
-    <div>
+    <MovieContainer>
       <div>
         <div>
           {props.movies.map((movie: any, index: any) => {
@@ -22,7 +28,7 @@ const MovieList = (props: Props) => {
           })}
         </div>
       </div>
-    </div>
+    </MovieContainer>
   );
 };
 
