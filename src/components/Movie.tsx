@@ -6,6 +6,7 @@ const { Meta } = Card;
 interface Props {
   image: any;
   title: string;
+
 }
 
 const Movie = (props: Props) => {

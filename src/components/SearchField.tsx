@@ -10,7 +10,7 @@ const SearchContainer = styled.div`
   margin-top: 20px;
 `;
 
-const SearchArea = (props:any) => {
+const SearchField = (props:any) => {
   return (
     <SearchContainer>
       <section>
@@ -31,4 +31,4 @@ const SearchArea = (props:any) => {
   );
 };
 
-export default SearchArea;
+export default SearchField;
