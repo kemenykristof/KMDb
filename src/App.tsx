@@ -12,6 +12,7 @@ interface State {
   totalResults: number;
   currentPage: number;
   currentMovie: any;
+  moviesPerPage: number;
 }
 
 class App extends Component<Props, State> {
@@ -23,6 +24,7 @@ class App extends Component<Props, State> {
       searchTerm: "",
       totalResults: 0,
       currentPage: 1,
+      moviesPerPage: 20,
       currentMovie: null
     };
     this.apiKey = process.env.REACT_APP_API;
@@ -48,7 +50,7 @@ class App extends Component<Props, State> {
     this.setState({ searchTerm: e.target.value });
   };
 
-  nextPage = (pageNumber: number) => {
+  nextPage = pageNumber => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
     )
@@ -63,7 +65,7 @@ class App extends Component<Props, State> {
   };
 
   render() {
-    let numberPages = Math.floor(this.state.totalResults / 20);
+    let numberPages = Math.floor(this.state.totalResults / this.state.moviesPerPage);
     return (
       <div className="App">
         <Navbar></Navbar>
@@ -72,7 +74,7 @@ class App extends Component<Props, State> {
           handleChange={this.handleChange}
         ></SearchField>
         <MovieList movies={this.state.movies} />
-        {this.state.totalResults > 20 && this.state.currentMovie == null ? (
+        {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
             pages={numberPages}
             nextPage={this.nextPage}

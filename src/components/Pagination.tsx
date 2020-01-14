@@ -1,15 +1,25 @@
 import React from "react";
 
-const Pagination = props => {
+const Pagination = (props: {
+  pages: number;
+  nextPage: (arg0: number) => void;
+  currentPage: number;
+}) => {
   let pageLinks: any[] = [];
 
   for (let i = 1; i <= props.pages + 1; i++) {
+    let active = props.currentPage === i ? "active" : "";
     pageLinks.push(
-      <li key={i} onClick={() => props.nextPage(i)}>
+      <li
+        className={`waves-effect ${active}`}
+        key={i}
+        onClick={() => props.nextPage(i)}
+      >
         <a href="#!">{i}</a>
       </li>
     );
   }
+
   return (
     <div className="container">
       <div className="row">

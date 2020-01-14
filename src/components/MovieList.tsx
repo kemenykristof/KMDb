@@ -14,10 +14,11 @@ const MovieContainer = styled.div`
   margin-top: 25px;
 `;
 
+
 const MovieList = (props: Props) => {
   return (
     <MovieContainer>
-      {props.movies.map((movie: any, index: any) => {
+      {props.movies.map((movie: any, index: number) => {
         return (
           <Movie
             key={index}
