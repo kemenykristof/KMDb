@@ -14,7 +14,6 @@ const MovieContainer = styled.div`
   margin-top: 25px;
 `;
 
-
 const MovieList = (props: Props) => {
   return (
     <MovieContainer>
@@ -24,7 +23,8 @@ const MovieList = (props: Props) => {
             key={index}
             image={movie.poster_path}
             title={movie.original_title}
-           
+            viewMovieInfo={props.viewMovieInfo}
+            movieId={movie.id}
           ></Movie>
         );
       })}

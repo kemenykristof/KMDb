@@ -9,7 +9,7 @@ interface Props {
 
 }
 
-const Movie = (props: Props) => {
+const MovieCard = (props: Props) => {
   return (
     <Card
       hoverable
@@ -29,9 +29,9 @@ const Movie = (props: Props) => {
         )
       }
     >
-      <Meta title={props.title} />
+      <Meta title={props.title} description={<p><a href="#" onClick={()=> props.viewMovieInfo(props.movieId)}>View infos</a></p>} />
     </Card>
   );
 };
 
-export default Movie;
+export default MovieCard;

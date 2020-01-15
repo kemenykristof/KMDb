@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import SearchField from "./components/SearchField";
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
+import MovieInfo from "./components/MovieInfo";
 
 interface Props {}
 
@@ -68,12 +69,12 @@ class App extends Component<Props, State> {
       });
   };
 
-  viewMovieInfo = (id: any) => {
+  viewMovieInfo = (id: any): void => {
     const filteredMovie = this.state.movies.filter(movie => movie.id === id);
 
     const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
 
-    this.setState({ currentMovie: filteredMovie });
+    this.setState({ currentMovie: newCurrentMovie });
   };
 
   closeMovieInfo = () => {
@@ -92,11 +93,24 @@ class App extends Component<Props, State> {
     return (
       <div className="App">
         <Navbar></Navbar>
-        <SearchField
-          handleSearch={this.handleSearch}
-          handleChange={this.handleChange}
-        ></SearchField>
-        <MovieList movies={this.state.movies} />
+        {this.state.currentMovie === null ? (
+          <div>
+            <SearchField
+              handleSearch={this.handleSearch}
+              handleChange={this.handleChange}
+            ></SearchField>{" "}
+            <MovieList
+              viewMovieInfo={this.viewMovieInfo}
+              movies={this.state.movies}
+            />
+          </div>
+        ) : (
+          <MovieInfo
+            closeMovieInfo={this.closeMovieInfo}
+            currentMovie={this.state.currentMovie}
+          />
+        )}
+
         {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
             pages={numOfPages}
