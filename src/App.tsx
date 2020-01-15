@@ -11,7 +11,6 @@ interface State {
   searchTerm: string;
   totalResults: number;
   currentPage: number;
-  currentMovie: any;
   moviesPerPage: number;
 }
 
@@ -24,8 +23,7 @@ class App extends Component<Props, State> {
       searchTerm: "",
       totalResults: 0,
       currentPage: 1,
-      moviesPerPage: 20,
-      currentMovie: null
+      moviesPerPage: 20
     };
     this.apiKey = process.env.REACT_APP_API;
   }
@@ -37,7 +35,10 @@ class App extends Component<Props, State> {
       .then(data => data.json())
       .then(data => {
         console.log(data);
-        this.setState({ movies: [...data.results] });
+        this.setState({
+          movies: [...data.results],
+          totalResults: data.total_results
+        });
       });
   };
 
@@ -52,10 +53,11 @@ class App extends Component<Props, State> {
 
   nextPage = pageNumber => {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&page=${pageNumber}`
     )
       .then(data => data.json())
       .then(data => {
+        console.log(data, "DATA");
         this.setState({
           movies: [...data.results],
           totalResults: data.total_results,
@@ -65,7 +67,14 @@ class App extends Component<Props, State> {
   };
 
   render() {
-    let numberPages = Math.floor(this.state.totalResults / this.state.moviesPerPage);
+    let numOfPages = Math.floor(
+      this.state.totalResults / this.state.moviesPerPage
+    );
+    console.log(numOfPages, "NUM OF PAGES");
+    console.log(this.nextPage, "NEXT PAGE");
+    console.log(this.state.currentPage, "CURRENT PAGE");
+    console.log(this.state.totalResults, "TOTAL RESULTS");
+
     return (
       <div className="App">
         <Navbar></Navbar>
@@ -76,7 +85,7 @@ class App extends Component<Props, State> {
         <MovieList movies={this.state.movies} />
         {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
-            pages={numberPages}
+            pages={numOfPages}
             nextPage={this.nextPage}
             currentPage={this.state.currentPage}
           />

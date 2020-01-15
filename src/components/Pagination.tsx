@@ -8,13 +8,8 @@ const Pagination = (props: {
   let pageLinks: any[] = [];
 
   for (let i = 1; i <= props.pages + 1; i++) {
-    let active = props.currentPage === i ? "active" : "";
     pageLinks.push(
-      <li
-        className={`waves-effect ${active}`}
-        key={i}
-        onClick={() => props.nextPage(i)}
-      >
+      <li key={i} onClick={() => props.nextPage(i)}>
         <a href="#!">{i}</a>
       </li>
     );
