@@ -100,6 +100,7 @@ class App extends Component<Props, State> {
               handleChange={this.handleChange}
             ></SearchField>{" "}
             <MovieList
+            //@ts-ignore
               viewMovieInfo={this.viewMovieInfo}
               movies={this.state.movies}
             />
