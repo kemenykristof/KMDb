@@ -12,6 +12,7 @@ interface State {
   totalResults: number;
   currentPage: number;
   moviesPerPage: number;
+  currentMovie: any;
 }
 
 class App extends Component<Props, State> {
@@ -23,12 +24,13 @@ class App extends Component<Props, State> {
       searchTerm: "",
       totalResults: 0,
       currentPage: 1,
-      moviesPerPage: 20
+      moviesPerPage: 20,
+      currentMovie: null
     };
     this.apiKey = process.env.REACT_APP_API;
   }
 
-  fetchMovies = () => {
+  searchMovies = () => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
     )
@@ -44,14 +46,14 @@ class App extends Component<Props, State> {
 
   handleSearch = (e: React.FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
-    this.fetchMovies();
+    this.searchMovies();
   };
 
   handleChange = (e: any) => {
     this.setState({ searchTerm: e.target.value });
   };
 
-  nextPage = pageNumber => {
+  getNextPage = pageNumber => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&page=${pageNumber}`
     )
@@ -66,12 +68,24 @@ class App extends Component<Props, State> {
       });
   };
 
+  viewMovieInfo = (id: any) => {
+    const filteredMovie = this.state.movies.filter(movie => movie.id === id);
+
+    const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
+
+    this.setState({ currentMovie: filteredMovie });
+  };
+
+  closeMovieInfo = () => {
+    this.setState({ currentMovie: null });
+  };
+
   render() {
     let numOfPages = Math.floor(
       this.state.totalResults / this.state.moviesPerPage
     );
     console.log(numOfPages, "NUM OF PAGES");
-    console.log(this.nextPage, "NEXT PAGE");
+    console.log(this.getNextPage, "NEXT PAGE");
     console.log(this.state.currentPage, "CURRENT PAGE");
     console.log(this.state.totalResults, "TOTAL RESULTS");
 
@@ -86,7 +100,7 @@ class App extends Component<Props, State> {
         {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
             pages={numOfPages}
-            nextPage={this.nextPage}
+            nextPage={this.getNextPage}
             currentPage={this.state.currentPage}
           />
         ) : (
