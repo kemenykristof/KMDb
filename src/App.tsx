@@ -100,7 +100,7 @@ class App extends Component<Props, State> {
               handleChange={this.handleChange}
             ></SearchField>{" "}
             <MovieList
-            //@ts-ignore
+              //@ts-ignore
               viewMovieInfo={this.viewMovieInfo}
               movies={this.state.movies}
             />
@@ -112,7 +112,8 @@ class App extends Component<Props, State> {
           />
         )}
 
-        {this.state.totalResults > this.state.moviesPerPage ? (
+        {this.state.totalResults > this.state.moviesPerPage &&
+        this.state.currentMovie === null ? (
           <Pagination
             pages={numOfPages}
             nextPage={this.getNextPage}
