@@ -9,8 +9,9 @@ interface Props {
 const MovieContainer = styled.div`
   justify-items: center;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 0.3fr);
   grid-auto-rows: 1fr;
+  grid-row-gap: 25px;
   margin-top: 25px;
 `;
 

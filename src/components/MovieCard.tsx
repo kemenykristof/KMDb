@@ -23,7 +23,7 @@ const MovieCard = (props: Props) => {
           <img
             src={`http://image.tmdb.org/t/p/w185${props.image}`}
             alt="movie"
-            style={{ width: "100%", height: 360 }}
+            style={{ width: "100%", height: 250 }}
           />
         )
       }
