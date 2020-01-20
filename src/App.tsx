@@ -60,7 +60,6 @@ class App extends Component<Props, State> {
     )
       .then(data => data.json())
       .then(data => {
-        console.log(data, "DATA");
         this.setState({
           movies: [...data.results],
           totalResults: data.total_results,
@@ -70,9 +69,12 @@ class App extends Component<Props, State> {
   };
 
   viewMovieInfo = (id: any) => {
-    const filteredMovie:any = this.state.movies.filter((movie:any) => movie.id === id);
+    const filteredMovie: any = this.state.movies.filter(
+      (movie: any) => movie.id === id
+    );
 
-    const newCurrentMovie:any = filteredMovie.length > 0 ? filteredMovie[0] : null;
+    const newCurrentMovie: any =
+      filteredMovie.length > 0 ? filteredMovie[0] : null;
 
     this.setState({ currentMovie: newCurrentMovie });
   };
@@ -85,10 +87,6 @@ class App extends Component<Props, State> {
     let numOfPages = Math.floor(
       this.state.totalResults / this.state.moviesPerPage
     );
-    console.log(numOfPages, "NUM OF PAGES");
-    console.log(this.getNextPage, "NEXT PAGE");
-    console.log(this.state.currentPage, "CURRENT PAGE");
-    console.log(this.state.totalResults, "TOTAL RESULTS");
 
     return (
       <div className="App">
