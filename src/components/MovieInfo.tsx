@@ -8,7 +8,13 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const MovieInfo = (props: any) => {
+  const releaseYear = props.currentMovie.release_date.substring(0, 4);
   return (
     <div>
       <div
@@ -20,12 +26,14 @@ const MovieInfo = (props: any) => {
       </div>
 
       <Container>
-        <div>
+        <Title>
           <span>
-            {props.currentMovie.title}
-            {props.currentMovie.release_date.substring(0, 4)}
+            <span style={{ fontSize: 25, fontWeight: "bold" }}>
+              {props.currentMovie.title}
+            </span>
+            {""} <span>{`(` + releaseYear + `)`}</span>
           </span>
-        </div>
+        </Title>
         <div>
           {props.currentMovie.poster_path == null ? (
             <img
@@ -37,9 +45,9 @@ const MovieInfo = (props: any) => {
           ) : (
             <img
               className=""
-              src={`http://image.tmdb.org/t/p/w185${props.currentMovie.poster_path}`}
+              src={`http://image.tmdb.org/t/p/w500${props.currentMovie.poster_path}`}
               alt="movie"
-              style={{ width: 200, height: 160 }}
+              style={{ width: 500, height: 360 }}
             />
           )}
         </div>

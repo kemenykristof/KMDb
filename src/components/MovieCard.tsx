@@ -12,7 +12,7 @@ const MovieCard = (props: any) => {
   return (
     <Card
       hoverable
-      style={{ width: 240 }}
+      style={{ width: 280 }}
       cover={
         props.image === null ? (
           <img
