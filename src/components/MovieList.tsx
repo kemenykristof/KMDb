@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 interface Props {
   movies: any;
+  vievMovieInfo: void;
 }
 
 const MovieContainer = styled.div`
@@ -15,7 +16,7 @@ const MovieContainer = styled.div`
   margin-top: 25px;
 `;
 
-const MovieList = (props: Props) => {
+const MovieList = (props:any) => {
   return (
     <MovieContainer>
       {props.movies.map((movie: any, index: number) => {
@@ -24,7 +25,6 @@ const MovieList = (props: Props) => {
             key={index}
             image={movie.poster_path}
             title={movie.original_title}
-            //@ts-ignore
             viewMovieInfo={props.viewMovieInfo}
             movieId={movie.id}
           ></Movie>

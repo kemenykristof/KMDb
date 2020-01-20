@@ -69,10 +69,10 @@ class App extends Component<Props, State> {
       });
   };
 
-  viewMovieInfo = (id: any): void => {
-    const filteredMovie = this.state.movies.filter(movie => movie.id === id);
+  viewMovieInfo = (id: any) => {
+    const filteredMovie:any = this.state.movies.filter((movie:any) => movie.id === id);
 
-    const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
+    const newCurrentMovie:any = filteredMovie.length > 0 ? filteredMovie[0] : null;
 
     this.setState({ currentMovie: newCurrentMovie });
   };
@@ -100,7 +100,6 @@ class App extends Component<Props, State> {
               handleChange={this.handleChange}
             ></SearchField>{" "}
             <MovieList
-              //@ts-ignore
               viewMovieInfo={this.viewMovieInfo}
               movies={this.state.movies}
             />

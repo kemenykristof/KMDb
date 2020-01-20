@@ -8,7 +8,7 @@ interface Props {
   title: string;
 }
 
-const MovieCard = (props: Props) => {
+const MovieCard = (props: any) => {
   return (
     <Card
       hoverable
@@ -28,12 +28,10 @@ const MovieCard = (props: Props) => {
         )
       }
     >
-      //@ts-ignore
       <Meta
         title={props.title}
         description={
           <p>
-            //@ts-ignore
             <a href="/#" onClick={() => props.viewMovieInfo(props.movieId)}>
               View infos
             </a>
