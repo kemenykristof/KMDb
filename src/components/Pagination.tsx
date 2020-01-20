@@ -16,9 +16,9 @@ const Pagination = (props: {
   }
 
   return (
-    <div className="container">
-      <div className="row">
-        <ul className="pagination">
+    <div>
+      <div >
+        <ul >
           {props.currentPage > 1 ? (
             <li onClick={() => props.nextPage(props.currentPage - 1)}>
               <a href="#!">Prev</a>

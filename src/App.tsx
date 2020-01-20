@@ -96,7 +96,7 @@ class App extends Component<Props, State> {
             <SearchField
               handleSearch={this.handleSearch}
               handleChange={this.handleChange}
-            ></SearchField>{" "}
+            ></SearchField>
             <MovieList
               viewMovieInfo={this.viewMovieInfo}
               movies={this.state.movies}
