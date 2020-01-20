@@ -52,6 +52,12 @@ const MovieInfo = (props: any) => {
           )}
         </div>
         <div>
+          <span>
+            <Icon type="star" />
+            {props.currentMovie.vote_average + `/10`}
+          </span>
+        </div>
+        <div>
           <p>{props.currentMovie.overview}</p>
         </div>
       </Container>
