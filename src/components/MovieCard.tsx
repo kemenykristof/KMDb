@@ -11,6 +11,7 @@ interface Props {
 const MovieCard = (props: any) => {
   return (
     <Card
+      onClick={() => props.viewMovieInfo(props.movieId)}
       hoverable
       style={{ width: 280 }}
       cover={
@@ -32,9 +33,7 @@ const MovieCard = (props: any) => {
         title={props.title}
         description={
           <p>
-            <a href="/#" onClick={() => props.viewMovieInfo(props.movieId)}>
-              View infos
-            </a>
+            <a href="/#">View infos</a>
           </p>
         }
       />
