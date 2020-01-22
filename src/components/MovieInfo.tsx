@@ -60,6 +60,7 @@ const MovieInfo = (props: any) => {
         <div>
           <p>{props.currentMovie.overview}</p>
         </div>
+        <Icon type="plus-circle" theme="twoTone" />
       </Container>
     </div>
   );
