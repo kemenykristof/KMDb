@@ -94,7 +94,6 @@ class App extends Component<Props, State> {
 
     return (
       <div className="App">
-        <Navbar></Navbar>
         {this.state.showSearchResults && (
           <MovieList
             viewMovieInfo={this.viewMovieInfo}
@@ -120,6 +119,7 @@ class App extends Component<Props, State> {
         )}
         <div>
           <BrowserRouter>
+            <Navbar></Navbar>
             <Switch>
               <Route path="/" component={PopularMovies} exact />
               <Route path="/watchlist" component={Watchlist} exact />

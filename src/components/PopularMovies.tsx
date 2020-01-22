@@ -21,13 +21,16 @@ const PopularMovies = props => {
   console.log(popularMovies, "pop movies");
 
   return (
-    <ul>
-      {popularMovies.map((movie: any, index: number) => (
-        <li key={index}>
-          <p>{movie.original_title}</p>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h2>Popular movies</h2>
+      <ul>
+        {popularMovies.map((movie: any, index: number) => (
+          <li key={index}>
+            <p>{movie.title}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
