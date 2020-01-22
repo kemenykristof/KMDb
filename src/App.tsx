@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import SearchField from "./components/SearchField";
+
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
 import MovieInfo from "./components/MovieInfo";
@@ -95,10 +95,7 @@ class App extends Component<Props, State> {
         <Navbar></Navbar>
         {this.state.currentMovie === null ? (
           <div>
-            <SearchField
-              handleSearch={this.handleSearch}
-              handleChange={this.handleChange}
-            ></SearchField>
+            
             <MovieList
               viewMovieInfo={this.viewMovieInfo}
               movies={this.state.movies}

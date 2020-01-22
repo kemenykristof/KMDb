@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import SearchField from "./SearchField";
 
 const Nav = styled.div`
   padding: 6px;
@@ -11,10 +12,14 @@ const Nav = styled.div`
 const Text = styled.p`
   color: "goldenrod";
 `;
-const Navbar = () => {
+const Navbar = props => {
   return (
     <Nav>
       <Text>KMDb</Text>
+      <SearchField
+        handleSearch={props.handleSearch}
+        handleChange={props.handleChange}
+      ></SearchField>
     </Nav>
   );
 };
