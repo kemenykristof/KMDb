@@ -44,10 +44,13 @@ class App extends Component<Props, State> {
         console.log(data);
         this.setState({
           movies: [...data.results],
-          totalResults: data.total_results
+          totalResults: data.total_results,
+          showSearchResults: true
         });
       });
   };
+
+
 
   handleSearch = (e: React.FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
@@ -95,19 +98,18 @@ class App extends Component<Props, State> {
     return (
       <div className="App">
         <Navbar></Navbar>
-        {this.state.currentMovie === null ? (
-          <div>
-            <MovieList
-              viewMovieInfo={this.viewMovieInfo}
-              movies={this.state.movies}
-            />
-          </div>
-        ) : (
-          <MovieInfo
+        {this.state.showSearchResults && (
+          <MovieList
+            viewMovieInfo={this.viewMovieInfo}
+            movies={this.state.movies}
+          />
+        )
+
+        /*  <MovieInfo
             closeMovieInfo={this.closeMovieInfo}
             currentMovie={this.state.currentMovie}
-          />
-        )}
+          /> */
+        }
 
         {this.state.totalResults > this.state.moviesPerPage &&
         this.state.currentMovie === null ? (
