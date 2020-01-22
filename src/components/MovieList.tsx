@@ -1,5 +1,5 @@
 import React from "react";
-import Movie from "./MovieCard";
+import MovieCard from "./MovieCard";
 import styled from "@emotion/styled";
 
 interface Props {
@@ -21,13 +21,13 @@ const MovieList = (props:any) => {
     <MovieContainer>
       {props.movies.map((movie: any, index: number) => {
         return (
-          <Movie
+          <MovieCard
             key={index}
             image={movie.poster_path}
             title={movie.original_title}
             viewMovieInfo={props.viewMovieInfo}
             movieId={movie.id}
-          ></Movie>
+          ></MovieCard>
         );
       })}
     </MovieContainer>

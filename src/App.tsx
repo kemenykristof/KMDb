@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
-import MovieInfo from "./components/MovieInfo";
 import Watchlist from "./components/Watchlist";
 import PopularMovies from "./components/PopularMovies";
 
@@ -49,8 +48,6 @@ class App extends Component<Props, State> {
         });
       });
   };
-
-
 
   handleSearch = (e: React.FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
