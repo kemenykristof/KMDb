@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import SearchField from "./components/SearchField";
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
 import MovieInfo from "./components/MovieInfo";
+import Watchlist from "./components/Watchlist";
 
 interface Props {}
 
@@ -119,6 +121,14 @@ class App extends Component<Props, State> {
         ) : (
           ""
         )}
+        <div>
+          <BrowserRouter>
+            <Switch>
+              <Route path="/watchlist" component={Watchlist} exact />
+    
+            </Switch>
+          </BrowserRouter>
+        </div>
       </div>
     );
   }
