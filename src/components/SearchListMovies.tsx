@@ -18,6 +18,16 @@ const Styledli = styled.li`
   width: 800px;
   height: 60px;
   margin-bottom: 10px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+`;
+
+const StyledText = styled.span`
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
 `;
 
 const SearchMovieList = (props: any) => {
@@ -26,7 +36,24 @@ const SearchMovieList = (props: any) => {
       <ul>
         {props.movies.map((movie: any, index: number) => (
           <Styledli key={index}>
-            <p>{movie.title}</p>
+            {movie.poster_path == null ? (
+              <img
+                className=""
+                src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
+                alt="noposter"
+                style={{ width: 50, height: 50 }}
+              />
+            ) : (
+              <img
+                className=""
+                src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                alt="movie poster"
+                style={{ width: 50, height: 50 }}
+              />
+            )}
+            <StyledText>
+              {movie.title} {movie.release_date.substring(0, 4)}
+            </StyledText>
           </Styledli>
         ))}
       </ul>
