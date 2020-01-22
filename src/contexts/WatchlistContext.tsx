@@ -1,28 +1,18 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
+import { watchlistReducer } from "../reducers/WatchlistReducer";
 
 export const WatchlistContext = createContext("");
 
 const WatchlistContextProvider = props => {
-  const [watchlist, setWatchlist]: any = useState([
-    { title: "Star Wars", id: 1 },
-    { title: "Harry Potter", id: 2 }
-  ]);
+    const [watchlist, dispatch] = useReducer(watchlistReducer, []);
 
-  const addMovieToWatchlist = (title: string) => {
-    setWatchlist([...watchlist, { title }]);
-  };
-
-  const removeMovieFromWatchlist = (id: number) => {
-    setWatchlist(watchlist.filter((movie: any) => movie.id !== id));
-  };
-
+  
   return (
     <WatchlistContext.Provider
       //@ts-ignore
       value={{
-        watchlist: watchlist,
-        addMovieToWatchlist: addMovieToWatchlist,
-        removeMovieFromWatchlist: removeMovieFromWatchlist
+        watchlist,
+        dispatch
       }}
     >
       {props.children}
