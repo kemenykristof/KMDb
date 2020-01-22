@@ -5,7 +5,8 @@ import { Card } from "antd";
 const { Meta } = Card;
 
 const MovieGrid = styled.div`
-  justify-items: center;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const PopularMovies = props => {
@@ -20,23 +21,21 @@ const PopularMovies = props => {
         .then(data => data.json())
         .then(data => {
           setPopularMovies(data.results);
-          console.log(data);
+          console.log(data, "popular movies");
         });
     };
     fetchData();
   }, [apiKey]);
 
-  console.log(popularMovies, "pop movies");
-
   return (
-    <div style={{ width: 1000, margin: "auto" }}>
+    <div style={{ width: 750, margin: "auto" }}>
       <h2 style={{ textAlign: "center" }}>Popular movies</h2>
       <div style={{ columns: "2 auto" }}>
         {popularMovies.map((movie: any, index: number) => (
-          <MovieGrid>
+          <MovieGrid key={index}>
             <Card
               hoverable
-              style={{ width: 280, borderRadius: "10px" }}
+              style={{ width: "100%", borderRadius: "10px" }}
               cover={
                 movie.poster_path === null ? (
                   <img
@@ -47,7 +46,7 @@ const PopularMovies = props => {
                   <img
                     src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt="movie"
-                    style={{ width: "100%", height: 250 }}
+                    style={{ width: "100%", height: 300 }}
                   />
                 )
               }

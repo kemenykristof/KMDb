@@ -13,7 +13,7 @@ const MovieCard = (props: any) => {
     <Card
       onClick={() => props.viewMovieInfo(props.movieId)}
       hoverable
-      style={{ width: 280, borderRadius: "10px" }}
+      style={{ width: 380, borderRadius: "10px" }}
       cover={
         props.image === null ? (
           <img

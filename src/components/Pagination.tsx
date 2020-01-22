@@ -17,10 +17,11 @@ const Pagination = (props: {
 
   return (
     <div>
-      <div >
-        <ul >
+      <div>
+        <ul>
           {props.currentPage > 1 ? (
-            <li onClick={() => props.nextPage(props.currentPage - 1)}>
+            //@ts-ignore
+            <li onClick={() => props.getNextPage(props.currentPage - 1)}>
               <a href="#!">Prev</a>
             </li>
           ) : (

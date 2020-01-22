@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 const { Search } = Input;
 
-const SearchContainer = styled.div`
+const SearchWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -12,7 +12,7 @@ const SearchContainer = styled.div`
 
 const SearchField = (props:any) => {
   return (
-    <SearchContainer>
+    <SearchWrapper>
       <section>
         <form action="" onSubmit={props.handleSearch}>
           <div>
@@ -27,7 +27,7 @@ const SearchField = (props:any) => {
           </div>
         </form>
       </section>
-    </SearchContainer>
+    </SearchWrapper>
   );
 };
 
