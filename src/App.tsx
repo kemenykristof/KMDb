@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
 import MovieInfo from "./components/MovieInfo";
 import Watchlist from "./components/Watchlist";
+import PopularMovies from "./components/PopularMovies";
 
 interface Props {}
 
@@ -16,6 +16,7 @@ interface State {
   currentPage: number;
   moviesPerPage: number;
   currentMovie: any;
+  showSearchResults: boolean;
 }
 
 class App extends Component<Props, State> {
@@ -28,7 +29,8 @@ class App extends Component<Props, State> {
       totalResults: 0,
       currentPage: 1,
       moviesPerPage: 20,
-      currentMovie: null
+      currentMovie: null,
+      showSearchResults: false
     };
     this.apiKey = process.env.REACT_APP_API;
   }
@@ -95,7 +97,6 @@ class App extends Component<Props, State> {
         <Navbar></Navbar>
         {this.state.currentMovie === null ? (
           <div>
-            
             <MovieList
               viewMovieInfo={this.viewMovieInfo}
               movies={this.state.movies}
@@ -121,8 +122,9 @@ class App extends Component<Props, State> {
         <div>
           <BrowserRouter>
             <Switch>
+              <Route path="/" component={PopularMovies} exact />
               <Route path="/watchlist" component={Watchlist} exact />
-    
+              <Route path="/results" component={MovieList} exact />
             </Switch>
           </BrowserRouter>
         </div>
