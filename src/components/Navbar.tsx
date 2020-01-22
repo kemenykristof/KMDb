@@ -23,9 +23,12 @@ const Navbar = props => {
     <Nav>
       <Text>KMDb</Text>
       <NavLink style={{ color: "#E1B73B" }} to="/">
-        Popular movies
+        Trending
       </NavLink>
-      
+      <NavLink style={{ color: "#E1B73B" }} to="/search">
+        Search
+      </NavLink>
+
       <NavLink style={{ color: "#E1B73B" }} to="/watchlist">
         Watchlist
       </NavLink>

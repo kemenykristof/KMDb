@@ -13,6 +13,11 @@ const ListContainer = styled.div`
 
 const Styledli = styled.li`
   list-style-type: none;
+  border-style: solid;
+  border-color: goldenrod;
+  width: 800px;
+  height: 60px;
+  margin-bottom: 10px;
 `;
 
 const SearchMovieList = (props: any) => {
