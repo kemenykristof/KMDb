@@ -17,6 +17,8 @@ const Title = styled.div`
 const MovieDetails = (props: any) => {
   const currentMovie = props.location.state;
   console.log(props.location.state, "state from link props");
+  const result = Object.values(currentMovie);
+  console.log(result);
 
   return (
     <div>
@@ -26,43 +28,52 @@ const MovieDetails = (props: any) => {
           <span style={{ marginLeft: 10 }}>Go back</span>
         </div>
       </NavLink>
-      <Container>
-        <Title>
-          <span>
-            <span style={{ fontSize: 25, fontWeight: "bold" }}>
-              {props.location.state.title}
-            </span>
-            {""} <span>{`(` + props.location.state.release_date + `)`}</span>
-          </span>
-        </Title>
-        <div>
-          {currentMovie.poster_path == null ? (
-            <img
-              className=""
-              src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
-              alt="noimg"
-              style={{ width: 200, height: 160 }}
+      {result.map((data: any) => {
+        return (
+          <Container>
+            <Title>
+              <span>
+                <span style={{ fontSize: 25, fontWeight: "bold" }}>
+                  {data.title}
+                </span>
+                {""}{" "}
+                <span>{`(` + data.release_date.substring(0, 4) + `)`}</span>
+              </span>
+            </Title>
+            <div>
+              {data.poster_path == null ? (
+                <img
+                  className=""
+                  src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
+                  alt="noimg"
+                  style={{ width: 200, height: 160 }}
+                />
+              ) : (
+                <img
+                  className=""
+                  src={`http://image.tmdb.org/t/p/w500${data.poster_path}`}
+                  alt="movie"
+                  style={{ width: 500, height: 360 }}
+                />
+              )}
+            </div>
+            <div>
+              <div>
+                <Icon type="star" theme="twoTone" />
+                {data.vote_average + `/10`}
+              </div>
+            </div>
+            <div>
+              <p>{data.overview}</p>
+            </div>
+            <Icon
+              style={{ fontSize: "30px", cursor: "pointer" }}
+              type="plus-circle"
+              theme="twoTone"
             />
-          ) : (
-            <img
-              className=""
-              src={`http://image.tmdb.org/t/p/w500${props.location.state.poster_path}`}
-              alt="movie"
-              style={{ width: 500, height: 360 }}
-            />
-          )}
-        </div>
-        <div>
-          <div>
-            <Icon type="star" theme="twoTone" />
-            {props.location.state.vote_average + `/10`}
-          </div>
-        </div>
-        <div>
-          <p>{props.location.state.overview}</p>
-        </div>
-        <Icon type="plus-circle" theme="twoTone" />
-      </Container>
+          </Container>
+        );
+      })}
     </div>
   );
 };
