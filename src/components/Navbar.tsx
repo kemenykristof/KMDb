@@ -4,24 +4,29 @@ import { NavLink } from "react-router-dom";
 
 const Nav = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 6px;
   background-color: #202020;
   font-size: 20px;
   color: #e1b73b;
   text-align: center;
 `;
-const Text = styled.div`
-  padding: 15px 5px 0px 5px;
+const Logo = styled.div`
   border-radius: 10px;
   font-weight: bold;
   background-color: #e1b73b;
   color: #202020;
+  border: none;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 `;
 const Navbar = props => {
   return (
     <Nav>
-      <Text>KMDb</Text>
+      <Logo>KMDb</Logo>
       <NavLink style={{ color: "#E1B73B" }} to="/">
         Trending
       </NavLink>

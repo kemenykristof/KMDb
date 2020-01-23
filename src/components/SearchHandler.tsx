@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchField from "./SearchField";
 import SearchListMovies from "./SearchListMovies";
+import Pagination from "./Pagination";
 
 interface Props {}
 
@@ -51,14 +52,56 @@ class SearchHandler extends Component<Props, State> {
     this.setState({ searchTerm: e.target.value });
   };
 
+  getNextPage = (pageNumber: number) => {
+    fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
+    )
+      .then(data => data.json())
+      .then(data => {
+        this.setState({
+          movies: [...data.results],
+          totalResults: data.total_results,
+          currentPage: pageNumber
+        });
+      });
+  };
+
+  viewMovieInfo = (id: any) => {
+    let filteredMovie;
+    this.state.movies.forEach((movie, i) => {
+      if (movie.id === id) {
+        filteredMovie = movie;
+      }
+    });
+
+    this.setState({ currentMovie: filteredMovie });
+  };
+
+  closeMovieInfo = () => {
+    this.setState({ currentMovie: null });
+  };
+
   render() {
+    const numberOfPages = Math.ceil(this.state.totalResults / 20);
     return (
       <div>
         <SearchField
           handleSearch={this.handleSearch}
           handleChange={this.handleChange}
         ></SearchField>
-        <SearchListMovies movies={this.state.movies}></SearchListMovies>
+        <SearchListMovies
+          viewMovieInfo={this.viewMovieInfo}
+          movies={this.state.movies}
+        ></SearchListMovies>
+        {this.state.totalResults > this.state.moviesPerPage ? (
+          <Pagination
+            numberOfPages={numberOfPages}
+            getNextPage={this.getNextPage}
+            currentPage={this.state.currentPage}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Watchlist from "./components/Watchlist";
 import PopularMovies from "./components/PopularMovies";
 import SearchHandler from "./components/SearchHandler";
+import WatchlistContextProvider from "./contexts/WatchlistContext";
 
 interface Props {}
 
@@ -13,7 +14,7 @@ class App extends Component<Props, State> {
   render() {
     return (
       <div className="App">
-        <div>
+        <WatchlistContextProvider>
           <BrowserRouter>
             <Navbar></Navbar>
             <Switch>
@@ -22,7 +23,7 @@ class App extends Component<Props, State> {
               <Route path="/search" component={SearchHandler} exact />
             </Switch>
           </BrowserRouter>
-        </div>
+        </WatchlistContextProvider>
       </div>
     );
   }

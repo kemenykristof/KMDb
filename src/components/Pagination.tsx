@@ -1,15 +1,34 @@
 import React from "react";
+import styled from "@emotion/styled";
+
+const StyledUl = styled.ul`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-right: 5px;
+  list-style-type: none;
+`;
 
 const Pagination = (props: {
-  pages: number;
-  nextPage: (arg0: number) => void;
+  numberOfPages: number;
+  getNextPage: (arg0: number) => void;
   currentPage: number;
 }) => {
   let pageLinks: any[] = [];
 
-  for (let i = 1; i <= props.pages + 1; i++) {
+  for (let i = 1; i <= props.numberOfPages + 1; i++) {
     pageLinks.push(
-      <li key={i} onClick={() => props.nextPage(i)}>
+      <li
+        style={{
+          borderStyle: "solid",
+          borderColor: "steelblue",
+          paddingRight: "3px",
+          paddingLeft: "3px",
+          marginRight: "5px"
+        }}
+        key={i}
+        onClick={() => props.getNextPage(i)}
+      >
         <a href="#!">{i}</a>
       </li>
     );
@@ -17,26 +36,23 @@ const Pagination = (props: {
 
   return (
     <div>
-      <div>
-        <ul>
-          {props.currentPage > 1 ? (
-            //@ts-ignore
-            <li onClick={() => props.getNextPage(props.currentPage - 1)}>
-              <a href="#!">Prev</a>
-            </li>
-          ) : (
-            ""
-          )}
-          {pageLinks}
-          {props.currentPage < props.pages + 1 ? (
-            <li onClick={() => props.nextPage(props.currentPage + 1)}>
-              <a href="#!">Next</a>
-            </li>
-          ) : (
-            ""
-          )}
-        </ul>
-      </div>
+      <StyledUl>
+        {props.currentPage > 1 ? (
+          <li onClick={() => props.getNextPage(props.currentPage - 1)}>
+            <a href="#!">Prev</a>
+          </li>
+        ) : (
+          ""
+        )}
+        {pageLinks}
+        {props.currentPage < props.numberOfPages + 1 ? (
+          <li onClick={() => props.getNextPage(props.currentPage + 1)}>
+            <a href="#!">Next</a>
+          </li>
+        ) : (
+          ""
+        )}
+      </StyledUl>
     </div>
   );
 };

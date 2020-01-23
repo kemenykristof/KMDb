@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-interface Props {
-  movies: any;
-  vievMovieInfo: void;
-}
-
 const ListContainer = styled.div`
   display: flex;
   justify-content: center;
