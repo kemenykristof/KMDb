@@ -23,9 +23,9 @@ const MovieDetails = (props: any) => {
   const result = Object.values(currentMovie);
   console.log(result);
 
-  const handleOnclick = ((title: string, id: string) => {
+  const handleOnclick = (title: string, id: string) => {
     dispatch({ type: "ADD_MOVIE", movie: { title, id } });
-    console.log("Adding movie with" ,title, );
+    console.log("Adding movie", title);
   };
 
   return (
