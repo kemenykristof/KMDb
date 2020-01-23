@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Icon from "antd/lib/icon";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
+import { WatchlistContext } from "../contexts/WatchlistContext";
 
 const Container = styled.div`
   display: flex;
@@ -15,10 +16,17 @@ const Title = styled.div`
 `;
 
 const MovieDetails = (props: any) => {
+  //@ts-ignore
+  const { dispatch } = useContext(WatchlistContext);
   const currentMovie = props.location.state;
   console.log(props.location.state, "state from link props");
   const result = Object.values(currentMovie);
   console.log(result);
+
+  const handleOnclick = ((title: string, id: string) => {
+    dispatch({ type: "ADD_MOVIE", movie: { title, id } });
+    console.log("Adding movie with" ,title, );
+  };
 
   return (
     <div>
@@ -67,6 +75,7 @@ const MovieDetails = (props: any) => {
               <p>{data.overview}</p>
             </div>
             <Icon
+              onClick={() => handleOnclick(data.title, data.id)}
               style={{ fontSize: "30px", cursor: "pointer" }}
               type="plus-circle"
               theme="twoTone"

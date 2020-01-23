@@ -1,4 +1,4 @@
-import uuid from "uuid/v4";
+
 
 export const watchlistReducer = (state, action) => {
   switch (action.type) {
@@ -7,8 +7,7 @@ export const watchlistReducer = (state, action) => {
         ...state,
         {
           title: action.movie.title,
-          author: action.movie.director,
-          id: uuid()
+          id: action.movie.id
         }
       ];
     case "REMOVE_MOVIE":
