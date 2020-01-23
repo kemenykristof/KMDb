@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchField from "./SearchField";
-import SearchListMovies from "./SearchListMovies";
+import SearchedMovieList from "./SearchedMovieList";
 import Pagination from "./Pagination";
 
 interface Props {}
@@ -89,10 +89,10 @@ class SearchHandler extends Component<Props, State> {
           handleSearch={this.handleSearch}
           handleChange={this.handleChange}
         ></SearchField>
-        <SearchListMovies
+        <SearchedMovieList
           viewMovieInfo={this.viewMovieInfo}
           movies={this.state.movies}
-        ></SearchListMovies>
+        ></SearchedMovieList>
         {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
             numberOfPages={numberOfPages}

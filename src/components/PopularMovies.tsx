@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { Card } from "antd";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -55,7 +56,16 @@ const PopularMovies = props => {
                 title={movie.title}
                 description={
                   <p>
-                    <a href="/#">View infos</a>
+                    <Link
+                      to={{
+                        pathname: `/movie/${movie.id}`,
+                        state: {
+                          currentMovie: movie
+                        }
+                      }}
+                    >
+                      View details
+                    </Link>
                   </p>
                 }
               />
@@ -68,3 +78,4 @@ const PopularMovies = props => {
 };
 
 export default PopularMovies;
+

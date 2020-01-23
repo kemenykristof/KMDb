@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "antd";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -33,7 +34,7 @@ const MovieCard = (props: any) => {
         title={props.title}
         description={
           <p>
-            <a href="/#">View infos</a>
+            <Link to={`$(props.match.params.id)`}>View infos</Link>
           </p>
         }
       />

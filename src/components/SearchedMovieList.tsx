@@ -25,7 +25,7 @@ const StyledText = styled.span`
   text-align: center;
 `;
 
-const SearchMovieList = (props: any) => {
+const SearchedMovieList = (props: any) => {
   return (
     <ListContainer>
       <ul>
@@ -56,4 +56,4 @@ const SearchMovieList = (props: any) => {
   );
 };
 
-export default SearchMovieList;
+export default SearchedMovieList;
