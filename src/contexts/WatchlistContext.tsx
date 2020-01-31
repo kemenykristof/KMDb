@@ -1,15 +1,23 @@
 import React, { createContext, useReducer } from "react";
 import { watchlistReducer } from "../reducers/WatchlistReducer";
+import { Movie } from "../interfaces/types";
 
-export const WatchlistContext = createContext("");
+type ContextType = {
+  watchlist: Movie[],
+  dispatch: React.Dispatch<any>
+}
+
+
+export const WatchlistContext = createContext<ContextType | null >(null);
 
 const WatchlistContextProvider = props => {
+  //@ts-ignore
     const [watchlist, dispatch] = useReducer(watchlistReducer, []);
 
   
   return (
     <WatchlistContext.Provider
-      //@ts-ignore
+    
       value={{
         watchlist,
         dispatch

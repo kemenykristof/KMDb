@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const MovieGrid = styled.div`
+const MovieContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
 const PopularMovies = props => {
-  const [popularMovies, setPopularMovies]: any = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
   let apiKey = process.env.REACT_APP_API;
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const PopularMovies = props => {
       <h2 style={{ textAlign: "center" }}>Popular movies</h2>
       <div style={{ columns: "2 auto" }}>
         {popularMovies.map((movie: any, index: number) => (
-          <MovieGrid key={index}>
+          <MovieContainer key={index}>
             <Card
               hoverable
               style={{ width: "100%", borderRadius: "10px" }}
@@ -70,7 +70,7 @@ const PopularMovies = props => {
                 }
               />
             </Card>
-          </MovieGrid>
+          </MovieContainer>
         ))}
       </div>
     </div>

@@ -66,7 +66,7 @@ class SearchHandler extends Component<Props, State> {
       });
   };
 
-  viewMovieInfo = (id: any) => {
+  viewMovieInfo = (id: string | number) => {
     let filteredMovie;
     this.state.movies.forEach((movie, i) => {
       if (movie.id === id) {

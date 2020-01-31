@@ -1,12 +1,22 @@
+import { Movie } from "../interfaces/types";
 
+type Action =
+  | {
+      type: "ADD_MOVIE";
+      movie: Movie;
+    }
+  | {
+      type: "REMOVE_MOVIE";
+      id: string;
+    };
 
-export const watchlistReducer = (state, action) => {
+export const watchlistReducer = (state: Movie[], action: Action) => {
   switch (action.type) {
     case "ADD_MOVIE":
       return [
         ...state,
         {
-          title: action.movie.title,
+          title: action.movie.name,
           id: action.movie.id
         }
       ];

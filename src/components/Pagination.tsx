@@ -11,10 +11,10 @@ const StyledUl = styled.ul`
 
 const Pagination = (props: {
   numberOfPages: number;
-  getNextPage: (arg0: number) => void;
+  getNextPage: (next: number) => void;
   currentPage: number;
 }) => {
-  let pageLinks: any[] = [];
+  let pageLinks:any[] = [];
 
   for (let i = 1; i <= props.numberOfPages + 1; i++) {
     pageLinks.push(

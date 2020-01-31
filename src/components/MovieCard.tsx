@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 interface Props {
-  image: any;
+  image: string | null;
   title: string;
 }
 
