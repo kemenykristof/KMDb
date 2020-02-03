@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, FormEvent } from "react";
 import SearchField from "./SearchField";
 import SearchedMovieList from "./SearchedMovieList";
 import Pagination from "./Pagination";
@@ -43,7 +43,7 @@ class SearchHandler extends Component<Props, State> {
       });
   };
 
-  handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
+  handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.searchMovies();
   };

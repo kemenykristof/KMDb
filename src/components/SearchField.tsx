@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { Input } from "antd";
 import styled from "@emotion/styled";
 
@@ -10,14 +10,19 @@ const SearchWrapper = styled.div`
   margin-top: 20px;
 `;
 
-const SearchField = (props:any) => {
+interface SearchFieldProps {
+  handleSearch: (event: FormEvent<HTMLFormElement>) => void;
+  handleChange: (e:any) => void;
+}
+
+const SearchField = (props: SearchFieldProps) => {
   return (
     <SearchWrapper>
       <section>
         <form action="" onSubmit={props.handleSearch}>
           <div>
             <Search
-            onChange={props.handleChange}
+              onChange={props.handleChange}
               placeholder="Search movies"
               enterButton="Search"
               size="large"

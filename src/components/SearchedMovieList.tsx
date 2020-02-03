@@ -25,7 +25,12 @@ const StyledText = styled.span`
   text-align: center;
 `;
 
-const SearchedMovieList = (props: any) => {
+interface SearchedMovieProps {
+  movies: {}[];
+  viewMovieInfo: (id: string | number) => void;
+}
+
+const SearchedMovieList = (props: SearchedMovieProps) => {
   return (
     <ListContainer>
       <ul>

@@ -10,7 +10,9 @@ const MovieContainer = styled.div`
   justify-content: space-between;
 `;
 
-const PopularMovies = props => {
+interface PopularMoviesProps {}
+
+const PopularMovies = (props: PopularMoviesProps) => {
   const [popularMovies, setPopularMovies] = useState([]);
   let apiKey = process.env.REACT_APP_API;
 
@@ -22,7 +24,6 @@ const PopularMovies = props => {
         .then(data => data.json())
         .then(data => {
           setPopularMovies(data.results);
-          console.log(data, "popular movies");
         });
     };
     fetchData();
@@ -78,4 +79,3 @@ const PopularMovies = props => {
 };
 
 export default PopularMovies;
-

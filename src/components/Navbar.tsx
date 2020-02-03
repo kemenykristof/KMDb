@@ -23,7 +23,12 @@ const Logo = styled.div`
   display: inline-block;
   font-size: 16px;
 `;
-const Navbar = props => {
+
+interface NavbarProps{
+
+}
+
+const Navbar = (props:NavbarProps) => {
   return (
     <Nav>
       <Logo>KMDb</Logo>
