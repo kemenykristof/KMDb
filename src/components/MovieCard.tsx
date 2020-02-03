@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-interface Props {
+interface MovieCardProps {
   image: string | null;
   title: string;
+  movieId: string | number;
+  viewMovieInfo: (id: string | number) => void;
 }
 
-const MovieCard = (props: any) => {
+const MovieCard = (props: MovieCardProps) => {
   return (
     <Card
       onClick={() => props.viewMovieInfo(props.movieId)}
