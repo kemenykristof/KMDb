@@ -3,21 +3,18 @@ import { watchlistReducer } from "../reducers/WatchlistReducer";
 import { Movie } from "../interfaces/types";
 
 type ContextType = {
-  watchlist: Movie[],
-  dispatch: React.Dispatch<any>
-}
+  watchlist: Movie[];
+  dispatch: React.Dispatch<any>;
+};
 
+export const WatchlistContext = createContext<ContextType | any>('');
 
-export const WatchlistContext = createContext<ContextType | null >(null);
-
-const WatchlistContextProvider = props => {
+const WatchlistContextProvider = (props: { children: React.ReactNode }) => {
   //@ts-ignore
-    const [watchlist, dispatch] = useReducer(watchlistReducer, []);
+  const [watchlist, dispatch] = useReducer(watchlistReducer, []);
 
-  
   return (
     <WatchlistContext.Provider
-    
       value={{
         watchlist,
         dispatch

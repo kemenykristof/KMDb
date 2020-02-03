@@ -38,9 +38,9 @@ const MovieDetails = (props: any) => {
           <span style={{ marginLeft: 10 }}>Go back</span>
         </div>
       </NavLink>
-      {result.map((data: any) => {
+      {result.map((data: any, index: number) => {
         return (
-          <Container>
+          <Container key={index}>
             <Title>
               <span>
                 <span style={{ fontSize: 25, fontWeight: "bold" }}>

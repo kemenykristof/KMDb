@@ -7,7 +7,7 @@ type Action =
     }
   | {
       type: "REMOVE_MOVIE";
-      id: string;
+      id: string | number;
     };
 
 export const watchlistReducer = (state: Movie[], action: Action) => {
@@ -16,7 +16,7 @@ export const watchlistReducer = (state: Movie[], action: Action) => {
       return [
         ...state,
         {
-          title: action.movie.name,
+          title: action.movie.title,
           id: action.movie.id
         }
       ];

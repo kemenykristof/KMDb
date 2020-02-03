@@ -14,8 +14,8 @@ interface State {}
 class App extends Component<Props, State> {
   render() {
     return (
-      <div className="App">
-        <WatchlistContextProvider>
+      <WatchlistContextProvider>
+        <div className="App">
           <BrowserRouter>
             <Navbar></Navbar>
             <Switch>
@@ -25,8 +25,8 @@ class App extends Component<Props, State> {
               <Route path="/movie/:id" component={MovieDetails} />
             </Switch>
           </BrowserRouter>
-        </WatchlistContextProvider>
-      </div>
+        </div>
+      </WatchlistContextProvider>
     );
   }
 }
