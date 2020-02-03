@@ -15,7 +15,7 @@ const Watchlist: React.SFC = props => {
                 <span>{movie.title}</span>
                 <button
                   onClick={() =>
-                    dispatch({ type: "REMOVE_BOOK", id: movie.id })
+                    dispatch({ type: "REMOVE_MOVIE", id: movie.id })
                   }
                 >
                   REMOVE
