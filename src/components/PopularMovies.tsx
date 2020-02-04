@@ -7,7 +7,9 @@ const { Meta } = Card;
 
 const MovieContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1200px;
 `;
 
 interface PopularMoviesProps {}
@@ -30,14 +32,19 @@ const PopularMovies = (props: PopularMoviesProps) => {
   }, [apiKey]);
 
   return (
-    <div style={{ width: 750, margin: "auto" }}>
-      <h2 style={{ textAlign: "center" }}>Popular movies</h2>
-      <div style={{ columns: "2 auto" }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <h1>Popular movies</h1>
+      <MovieContainer>
         {popularMovies.map((movie: any, index: number) => (
-          <MovieContainer key={index}>
+          <div key={index}>
             <Card
               hoverable
-              style={{ width: "100%", borderRadius: "10px" }}
+              style={{
+                width: 450,
+                borderRadius: "10px",
+                marginRight: 50,
+                marginTop: 20
+              }}
               cover={
                 movie.poster_path === null ? (
                   <img
@@ -71,9 +78,9 @@ const PopularMovies = (props: PopularMoviesProps) => {
                 }
               />
             </Card>
-          </MovieContainer>
+          </div>
         ))}
-      </div>
+      </MovieContainer>
     </div>
   );
 };

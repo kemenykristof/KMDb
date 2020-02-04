@@ -48,7 +48,7 @@ class SearchHandler extends Component<Props, State> {
     this.searchMovies();
   };
 
-  handleChange = (e: any) => {
+  handleChange = (e: { target: { value: string; }; }) => {
     this.setState({ searchTerm: e.target.value });
   };
 
