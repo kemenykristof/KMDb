@@ -1,7 +1,8 @@
 import React, { Component, FormEvent } from "react";
 import SearchField from "./SearchField";
 import SearchedMovieList from "./SearchedMovieList";
-import Pagination from "./Pagination";
+import { Pagination } from "antd";
+/* import Pagination from "./Pagination"; */
 
 interface Props {}
 
@@ -94,9 +95,9 @@ class SearchHandler extends Component<Props, State> {
         ></SearchedMovieList>
         {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
-            numberOfPages={numberOfPages}
-            getNextPage={this.getNextPage}
-            currentPage={this.state.currentPage}
+            defaultCurrent={this.state.currentPage}
+            total={this.state.totalResults}
+            onChange={this.getNextPage}
           />
         ) : (
           ""
