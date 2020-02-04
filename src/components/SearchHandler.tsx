@@ -82,7 +82,7 @@ class SearchHandler extends Component<Props, State> {
   };
 
   render() {
-    const numberOfPages = Math.ceil(this.state.totalResults / 20);
+    /* const numberOfPages = Math.ceil(this.state.totalResults / 20); */
     return (
       <div>
         <SearchField

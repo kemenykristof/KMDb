@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const MovieContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 1200px;
-`;
+const MovieContainer = styled.div({
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  width: "1200px"
+});
 
 interface PopularMoviesProps {}
 
@@ -26,6 +26,7 @@ const PopularMovies = (props: PopularMoviesProps) => {
         .then(data => data.json())
         .then(data => {
           setPopularMovies(data.results);
+          console.log(data, "data");
         });
     };
     fetchData();
@@ -63,18 +64,34 @@ const PopularMovies = (props: PopularMoviesProps) => {
               <Meta
                 title={movie.title}
                 description={
-                  <p>
-                    <Link
-                      to={{
-                        pathname: `/movie/${movie.id}`,
-                        state: {
-                          currentMovie: movie
-                        }
+                  <div>
+                    <p
+                      style={{
+                        wordWrap: "break-word",
+                        whiteSpace: "normal",
+                        color: "#4d4d4d",
+                        fontSize: "0.9em",
+                        lineHeight: "1.2em",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        maxHeight: "3.6em"
                       }}
                     >
-                      View details
-                    </Link>
-                  </p>
+                      {movie.overview}
+                    </p>
+                    <p>
+                      <Link
+                        to={{
+                          pathname: `/movie/${movie.id}`,
+                          state: {
+                            currentMovie: movie
+                          }
+                        }}
+                      >
+                        View more info
+                      </Link>
+                    </p>
+                  </div>
                 }
               />
             </Card>
