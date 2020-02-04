@@ -2,33 +2,32 @@ import React from "react";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 
-const Nav = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 6px;
-  background-color: #202020;
-  font-size: 20px;
-  color: #e1b73b;
-  text-align: center;
-`;
-const Logo = styled.div`
-  border-radius: 10px;
-  font-weight: bold;
-  background-color: #e1b73b;
-  color: #202020;
-  border: none;
-  padding: 8px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-`;
+const Nav = styled.div({
+  display: "flex",
+  justifyContent: "space-around",
+  padding: "6px",
+  backgroundColor: "#202020",
+  fontSize: "20px",
+  color: "#e1b73b",
+  textAlign: "center"
+});
 
-interface NavbarProps{
+const Logo = styled.div({
+  borderRadius: "10px",
+  fontWeight: "bold",
+  backgroundColor: "#e1b73b",
+  color: "#202020",
+  border: "none",
+  padding: "8px 10px",
+  textAlign: "center",
+  textDecoration: "none",
+  display: "inline-block",
+  fontSize: "16px"
+});
 
-}
+interface NavbarProps {}
 
-const Navbar = (props:NavbarProps) => {
+const Navbar = (props: NavbarProps) => {
   return (
     <Nav>
       <Logo>KMDb</Logo>
