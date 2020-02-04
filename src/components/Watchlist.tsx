@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 
 const Watchlist: React.SFC = props => {
-  //@ts-ignore
   const { watchlist, dispatch } = useContext(WatchlistContext);
 
   return watchlist.length ? (

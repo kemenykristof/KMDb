@@ -16,18 +16,15 @@ const Title = styled.div`
 `;
 
 const MovieDetails = (props: any) => {
-  //@ts-ignore
   const { dispatch } = useContext(WatchlistContext);
 
   // TODO : REFACTOR TO USE STATE , FETCH API BY ID
   const currentMovie = props.location.state;
-  console.log(props.location.state, "state from link props");
+
   const result = Object.values(currentMovie);
-  console.log(result);
 
   const handleOnclick = (title: string, id: string) => {
     dispatch({ type: "ADD_MOVIE", movie: { title, id } });
-    console.log("Adding movie", title);
   };
 
   return (

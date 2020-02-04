@@ -35,7 +35,6 @@ class SearchHandler extends Component<Props, State> {
     )
       .then(data => data.json())
       .then(data => {
-        console.log(data, "search data");
         this.setState({
           movies: [...data.results],
           totalResults: data.total_results
