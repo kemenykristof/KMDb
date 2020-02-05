@@ -12,6 +12,22 @@ const MovieContainer = styled.div({
   width: "1200px"
 });
 
+const OverviewStyle = styled.p({
+  wordWrap: "break-word",
+  whiteSpace: "normal",
+  color: "#4d4d4d",
+  fontSize: "0.9em",
+  lineHeight: "1.2em",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  maxHeight: "3.6em"
+});
+
+const ImgStyle = styled.img({
+  width: "100%",
+  height: 300
+});
+
 interface PopularMoviesProps {}
 
 const PopularMovies = (props: PopularMoviesProps) => {
@@ -53,10 +69,9 @@ const PopularMovies = (props: PopularMoviesProps) => {
                     src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
                   />
                 ) : (
-                  <img
+                  <ImgStyle
                     src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt="movie"
-                    style={{ width: "100%", height: 300 }}
                   />
                 )
               }
@@ -65,20 +80,7 @@ const PopularMovies = (props: PopularMoviesProps) => {
                 title={movie.title}
                 description={
                   <div>
-                    <p
-                      style={{
-                        wordWrap: "break-word",
-                        whiteSpace: "normal",
-                        color: "#4d4d4d",
-                        fontSize: "0.9em",
-                        lineHeight: "1.2em",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        maxHeight: "3.6em"
-                      }}
-                    >
-                      {movie.overview}
-                    </p>
+                    <OverviewStyle>{movie.overview}</OverviewStyle>
                     <p>
                       <Link
                         to={{

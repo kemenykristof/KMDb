@@ -25,22 +25,31 @@ const Logo = styled.div({
   fontSize: "16px"
 });
 
+const StyledNavlink = styled.div({
+  fontWeight: "bold"
+});
+
 interface NavbarProps {}
 
 const Navbar = (props: NavbarProps) => {
   return (
     <Nav>
       <Logo>KMDb</Logo>
-      <NavLink style={{ color: "#E1B73B" }} to="/">
-        Trending
-      </NavLink>
-      <NavLink style={{ color: "#E1B73B" }} to="/search">
-        Search
-      </NavLink>
-
-      <NavLink style={{ color: "#E1B73B" }} to="/watchlist">
-        Watchlist
-      </NavLink>
+      <StyledNavlink>
+        <NavLink style={{ color: "#e1b73b" }} to="/">
+          Trending
+        </NavLink>
+      </StyledNavlink>
+      <StyledNavlink>
+        <NavLink style={{ color: "#e1b73b" }} to="/search">
+          Search
+        </NavLink>
+      </StyledNavlink>
+      <StyledNavlink>
+        <NavLink style={{ color: "#e1b73b" }} to="/watchlist">
+          Watchlist
+        </NavLink>
+      </StyledNavlink>
     </Nav>
   );
 };

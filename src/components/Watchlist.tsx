@@ -25,35 +25,38 @@ const Watchlist: React.SFC = props => {
   console.log(watchlist, "watchlist");
 
   return watchlist.length ? (
-    <UList>
-      {watchlist.map(movie => {
-        return (
-          <List key={movie.id}>
-            {movie.poster_path == null ? (
-              <img
-                className=""
-                src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
-                alt="noposter"
-                style={{ width: 50, height: 50 }}
-              />
-            ) : (
-              <img
-                className=""
-                src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
-                alt="movie poster"
-                style={{ width: 50, height: 50 }}
-              />
-            )}
-            <span>{movie.title}</span>
-            <button
-              onClick={() => dispatch({ type: "REMOVE_MOVIE", id: movie.id })}
-            >
-              REMOVE
-            </button>
-          </List>
-        );
-      })}
-    </UList>
+    <div>
+      <h1>Your watchlist</h1>
+      <UList>
+        {watchlist.map(movie => {
+          return (
+            <List key={movie.id}>
+              {movie.poster_path == null ? (
+                <img
+                  className=""
+                  src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
+                  alt="noposter"
+                  style={{ width: 50, height: 50 }}
+                />
+              ) : (
+                <img
+                  className=""
+                  src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                  alt="movie poster"
+                  style={{ width: 50, height: 50 }}
+                />
+              )}
+              <span>{movie.title}</span>
+              <button
+                onClick={() => dispatch({ type: "REMOVE_MOVIE", id: movie.id })}
+              >
+                REMOVE
+              </button>
+            </List>
+          );
+        })}
+      </UList>
+    </div>
   ) : (
     <div>You have no movies on your watchlist</div>
   );
