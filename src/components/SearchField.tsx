@@ -4,15 +4,15 @@ import styled from "@emotion/styled";
 
 const { Search } = Input;
 
-const SearchWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
+const SearchWrapper = styled.div({
+  display: "flex",
+  justifyContent: "center",
+  marginTop: "20px"
+});
 
 interface SearchFieldProps {
   handleSearch: (event: FormEvent<HTMLFormElement>) => void;
-  handleChange: (e) => void;
+  handleChange: (e: any) => void;
 }
 
 const SearchField = (props: SearchFieldProps) => {
