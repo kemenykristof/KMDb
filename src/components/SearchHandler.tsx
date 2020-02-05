@@ -29,7 +29,7 @@ class SearchHandler extends Component<Props, State> {
     this.apiKey = process.env.REACT_APP_API;
   }
 
-  searchMovies = () => {
+  searchMovies = async() => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
     )
@@ -47,11 +47,11 @@ class SearchHandler extends Component<Props, State> {
     this.searchMovies();
   };
 
-  handleChange = (e: { target: { value: string; }; }) => {
+  handleChange = (e: { target: { value: string } }) => {
     this.setState({ searchTerm: e.target.value });
   };
 
-  getPage = (pageNumber: number) => {
+  getPage = async (pageNumber: number) => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
     )
@@ -67,7 +67,7 @@ class SearchHandler extends Component<Props, State> {
 
   viewMovieInfo = (id: string | number) => {
     let filteredMovie;
-    this.state.movies.forEach((movie: { id: string | number; }) => {
+    this.state.movies.forEach((movie: { id: string | number }) => {
       if (movie.id === id) {
         filteredMovie = movie;
       }
@@ -81,7 +81,7 @@ class SearchHandler extends Component<Props, State> {
   };
 
   render() {
-    /* const numberOfPages = Math.ceil(this.state.totalResults / 20); */
+    const numberOfPages = Math.ceil(this.state.totalResults / 20);
     return (
       <div>
         <SearchField
@@ -95,7 +95,7 @@ class SearchHandler extends Component<Props, State> {
         {this.state.totalResults > this.state.moviesPerPage ? (
           <Pagination
             defaultCurrent={this.state.currentPage}
-            total={this.state.totalResults}
+            total={numberOfPages}
             onChange={this.getPage}
           />
         ) : (

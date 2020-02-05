@@ -25,7 +25,7 @@ const OverviewStyle = styled.p({
 
 const ImgStyle = styled.img({
   width: "100%",
-  height: 300
+  height: 330
 });
 
 interface PopularMoviesProps {}
@@ -57,7 +57,7 @@ const PopularMovies = (props: PopularMoviesProps) => {
             <Card
               hoverable
               style={{
-                width: 450,
+                width: 420,
                 borderRadius: "10px",
                 marginRight: 50,
                 marginTop: 20

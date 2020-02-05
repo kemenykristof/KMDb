@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 import styled from "@emotion/styled";
+import { Tooltip } from 'antd';
+import { Rate } from 'antd';
 
 const UList = styled.ul({
   listStyle: "none",
@@ -36,23 +38,26 @@ const Watchlist: React.SFC = props => {
                   className=""
                   src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
                   alt="noposter"
-                  style={{ width: 50, height: 50 }}
+                  style={{ width: 96, height: 142 }}
                 />
               ) : (
                 <img
                   className=""
                   src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
                   alt="movie poster"
-                  style={{ width: 50, height: 50 }}
+                  style={{ width: 96, height: 142 }}
                 />
               )}
               <span>{movie.title}</span>
+              
               <button
                 onClick={() => dispatch({ type: "REMOVE_MOVIE", id: movie.id })}
               >
                 REMOVE
               </button>
+              <Rate />
             </List>
+            
           );
         })}
       </UList>
