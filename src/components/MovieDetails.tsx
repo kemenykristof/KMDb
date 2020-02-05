@@ -23,7 +23,7 @@ const MovieDetails = (props: any) => {
 
   const result = Object.values(currentMovie);
 
-  const handleOnclick = (title: string, id: string, poster_path:string) => {
+  const handleOnclick = (title: string, id: string, poster_path: string) => {
     // todo if check movie id already in watchlist to ensure unique list
     dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
   };
@@ -51,14 +51,12 @@ const MovieDetails = (props: any) => {
             <div>
               {data.poster_path == null ? (
                 <img
-                  className=""
                   src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
                   alt="noimg"
                   style={{ width: 200, height: 160 }}
                 />
               ) : (
                 <img
-                  className=""
                   src={`http://image.tmdb.org/t/p/w500${data.poster_path}`}
                   alt="movie"
                   style={{ width: 500, height: 360 }}
@@ -75,7 +73,9 @@ const MovieDetails = (props: any) => {
               <p>{data.overview}</p>
             </div>
             <Icon
-              onClick={() => handleOnclick(data.title, data.id, data.poster_path)}
+              onClick={() =>
+                handleOnclick(data.title, data.id, data.poster_path)
+              }
               style={{ fontSize: "30px", cursor: "pointer" }}
               type="plus-circle"
               theme="twoTone"
