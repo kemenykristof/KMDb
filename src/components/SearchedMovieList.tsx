@@ -52,7 +52,7 @@ const SearchedMovieList = (props: SearchedMovieProps) => {
               />
             )}
             <StyledText>
-              {movie.title} {movie.release_date.substring(0, 4)}
+              {movie.title} {movie.release_date}
             </StyledText>
           </Styledli>
         ))}

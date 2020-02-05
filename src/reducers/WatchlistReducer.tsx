@@ -17,7 +17,8 @@ export const watchlistReducer = (state: Movie[], action: Action) => {
         ...state,
         {
           title: action.movie.title,
-          id: action.movie.id
+          id: action.movie.id,
+          poster_path: action.movie.poster_path
         }
       ];
     case "REMOVE_MOVIE":

@@ -16,15 +16,16 @@ const Title = styled.div`
 `;
 
 const MovieDetails = (props: any) => {
-  const { dispatch } = useContext(WatchlistContext);
+  const { dispatch, watchlist } = useContext(WatchlistContext);
 
   // TODO : REFACTOR TO USE STATE , FETCH API BY ID
   const currentMovie = props.location.state;
 
   const result = Object.values(currentMovie);
 
-  const handleOnclick = (title: string, id: string) => {
-    dispatch({ type: "ADD_MOVIE", movie: { title, id } });
+  const handleOnclick = (title: string, id: string, poster_path:string) => {
+    // todo if check movie id already in watchlist to ensure unique list
+    dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
   };
 
   return (
@@ -74,7 +75,7 @@ const MovieDetails = (props: any) => {
               <p>{data.overview}</p>
             </div>
             <Icon
-              onClick={() => handleOnclick(data.title, data.id)}
+              onClick={() => handleOnclick(data.title, data.id, data.poster_path)}
               style={{ fontSize: "30px", cursor: "pointer" }}
               type="plus-circle"
               theme="twoTone"
