@@ -2,7 +2,6 @@ import React, { Component, FormEvent } from "react";
 import SearchField from "./SearchField";
 import SearchedMovieList from "./SearchedMovieList";
 import { Pagination } from "antd";
-/* import Pagination from "./Pagination"; */
 
 interface Props {}
 
@@ -52,7 +51,7 @@ class SearchHandler extends Component<Props, State> {
     this.setState({ searchTerm: e.target.value });
   };
 
-  getNextPage = (pageNumber: number) => {
+  getPage = (pageNumber: number) => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
     )
@@ -68,7 +67,7 @@ class SearchHandler extends Component<Props, State> {
 
   viewMovieInfo = (id: string | number) => {
     let filteredMovie;
-    this.state.movies.forEach((movie, i) => {
+    this.state.movies.forEach((movie: { id: string | number; }) => {
       if (movie.id === id) {
         filteredMovie = movie;
       }
@@ -97,7 +96,7 @@ class SearchHandler extends Component<Props, State> {
           <Pagination
             defaultCurrent={this.state.currentPage}
             total={this.state.totalResults}
-            onChange={this.getNextPage}
+            onChange={this.getPage}
           />
         ) : (
           ""

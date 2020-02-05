@@ -6,24 +6,30 @@ const ListContainer = styled.div`
   justify-content: center;
 `;
 
-const Styledli = styled.li`
-  list-style-type: none;
-  border-style: solid;
-  border-color: goldenrod;
-  width: 800px;
-  height: 60px;
-  margin-bottom: 10px;
-  margin-top: 15px;
-  display: flex;
-  flex-direction: row;
-  border-radius: 5px;
-`;
 
 const StyledText = styled.span`
   font-size: 18px;
   font-weight: bold;
   text-align: center;
 `;
+
+const UList = styled.ul({
+  listStyle: "none",
+  width: "90%",
+  maxWidth: "40rem",
+  margin: "2rem auto",
+  padding: 0
+});
+
+const List = styled.li({
+  margin: "1rem 0",
+  padding: "1rem",
+  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.26)",
+  borderRadius: "6px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
+});
 
 interface SearchedMovieProps {
   movies: {}[];
@@ -33,9 +39,9 @@ interface SearchedMovieProps {
 const SearchedMovieList = (props: SearchedMovieProps) => {
   return (
     <ListContainer>
-      <ul>
+      <UList>
         {props.movies.map((movie: any, index: number) => (
-          <Styledli key={index}>
+          <List key={index}>
             {movie.poster_path == null ? (
               <img
                 className=""
@@ -54,9 +60,9 @@ const SearchedMovieList = (props: SearchedMovieProps) => {
             <StyledText>
               {movie.title} {movie.release_date}
             </StyledText>
-          </Styledli>
+          </List>
         ))}
-      </ul>
+      </UList>
     </ListContainer>
   );
 };
