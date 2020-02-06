@@ -1,8 +1,9 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 import styled from "@emotion/styled";
-
-import Rater from "./Rater"
+import Rater from "./Rater";
+import Icon from "antd/lib/icon";
+import { Tooltip } from "antd";
 
 const UList = styled.ul({
   listStyle: "none",
@@ -47,14 +48,19 @@ const Watchlist: React.SFC = props => {
                   style={{ width: 96, height: 142 }}
                 />
               )}
-              <span>{movie.title}</span>
-
-              <button
-                onClick={() => dispatch({ type: "REMOVE_MOVIE", id: movie.id })}
-              >
-                REMOVE
-              </button>
-                <Rater></Rater>
+              <span style={{ fontWeight: "bold" }}>{movie.title}</span>
+              <Tooltip title="Remove from watchlist">
+                <Icon
+                  onClick={() =>
+                    dispatch({ type: "REMOVE_MOVIE", id: movie.id })
+                  }
+                  type="close-circle"
+                  theme="twoTone"
+                  twoToneColor="red"
+                  style={{ fontSize: "24px" }}
+                />
+              </Tooltip>
+              <Rater></Rater>
             </List>
           );
         })}

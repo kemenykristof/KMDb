@@ -1,26 +1,24 @@
 import React, { useContext } from "react";
-import Icon from "antd/lib/icon";
+import { Button, Icon } from "antd";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 import { notification } from "antd";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+const Container = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center"
+});
 
-const Title = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+const Title = styled.div({ display: "flex", justifyContent: "space-between" });
 
 const MovieDetails = (props: any) => {
-  const { dispatch } = useContext(WatchlistContext);
+  const { dispatch, watchlist } = useContext(WatchlistContext);
+  console.log(watchlist);
 
   const openNotificationWithIcon = type => {
-    notification[type]({
+    notification["success"]({
       message: "Successfully added!",
       description: "The selected movie was added to your watchlist."
     });
@@ -31,20 +29,24 @@ const MovieDetails = (props: any) => {
       duration: 3
     });
   };
+
   const currentMovie = props.location.state;
 
   const result = Object.values(currentMovie);
 
   const handleOnclick = (title: string, id: string, poster_path: string) => {
-    // todo if check movie id already in watchlist to ensure unique list
-    dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
+    if (watchlist.find(movie => movie.id === id)) {
+    } else {
+      dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
+      openNotificationWithIcon("success");
+    }
   };
 
   return (
     <div>
       <NavLink to="/">
         <div style={{ cursor: "pointer", paddingTop: 50 }}>
-          <Icon type="left" />
+          <Icon type="left-circle" theme="twoTone" />
           <span style={{ marginLeft: 10 }}>Go back</span>
         </div>
       </NavLink>
@@ -84,15 +86,15 @@ const MovieDetails = (props: any) => {
             <div>
               <p>{data.overview}</p>
             </div>
-            <Icon
+            <Button
               onClick={() => {
                 handleOnclick(data.title, data.id, data.poster_path);
-                openNotificationWithIcon("success");
               }}
-              style={{ fontSize: "30px", cursor: "pointer" }}
-              type="plus-circle"
-              theme="twoTone"
-            />
+              type="primary"
+            >
+              <Icon type="plus" />
+              Add to Watchlist
+            </Button>
           </Container>
         );
       })}

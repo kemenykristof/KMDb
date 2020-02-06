@@ -3,7 +3,7 @@ import React from "react";
 
 class Rater extends React.Component {
   state = {
-    value: 3
+    value: 0
   };
 
   handleChange = (value: number) => {
