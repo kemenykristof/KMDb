@@ -23,6 +23,12 @@ const List = styled.li({
   alignItems: "center"
 });
 
+const TitleStyle = styled.span({
+  fontWeight: "bold",
+  fontSize: "20px",
+  color: "goldenrod"
+})
+
 const Watchlist: React.SFC = props => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
 
@@ -48,7 +54,7 @@ const Watchlist: React.SFC = props => {
                   style={{ width: 96, height: 142 }}
                 />
               )}
-              <span style={{ fontWeight: "bold" }}>{movie.title}</span>
+              <TitleStyle>{movie.title}</TitleStyle>
               <Tooltip title="Remove from watchlist">
                 <Icon
                   onClick={() =>

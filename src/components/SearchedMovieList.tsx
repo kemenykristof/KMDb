@@ -7,13 +7,6 @@ const ListContainer = styled.div`
   justify-content: center;
 `;
 
-const StyledText = styled.span`
-  margin-left: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-`;
-
 const UList = styled.ul({
   listStyle: "none",
   width: "90%",
@@ -30,6 +23,23 @@ const List = styled.li({
   display: "flex",
   justifyContent: "flex-start",
   alignItems: "center"
+});
+
+const StyledText = styled.span({
+  marginLeft: "20px",
+  fontSize: "18px",
+  fontWeight: "bold",
+  textAlign: "center",
+  color: "goldenrod"
+});
+
+const StyledReleaseDate = styled.span({
+  marginLeft: "20px",
+  marginRight: "20px",
+  fontSize: "18px",
+  fontWeight: "bold",
+  textAlign: "center",
+  color: "steelblue"
 });
 
 interface SearchedMovieProps {
@@ -58,9 +68,11 @@ const SearchedMovieList = (props: SearchedMovieProps) => {
                 style={{ width: 50, height: 50 }}
               />
             )}
-            <StyledText>
-              {movie.title} {movie.release_date}
-            </StyledText>
+            <StyledText>{movie.title}</StyledText>
+            <StyledReleaseDate>
+              {`(` + movie.release_date + `)`}
+            </StyledReleaseDate>
+
             <Link
               to={{
                 pathname: `/movie/${movie.id}`,

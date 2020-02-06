@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
-import { Card } from "antd";
+import { Card, notification } from "antd";
 import { Link } from "react-router-dom";
+import { WatchlistContext } from "../contexts/WatchlistContext";
+import { Button, Icon } from "antd";
 
 const { Meta } = Card;
 
@@ -31,12 +33,13 @@ const ImgStyle = styled.img({
 interface PopularMoviesProps {}
 
 const PopularMovies = (props: PopularMoviesProps) => {
+  const { dispatch, watchlist } = useContext(WatchlistContext);
   const [popularMovies, setPopularMovies] = useState([]);
   let apiKey = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const fetchData = () => {
-      fetch(
+    const fetchData = async () => {
+      await fetch(
         `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
       )
         .then(data => data.json())
@@ -47,6 +50,31 @@ const PopularMovies = (props: PopularMoviesProps) => {
     };
     fetchData();
   }, [apiKey]);
+
+  const openNotificationWithIcon = type => {
+    notification["success"]({
+      message: "Successfully added!",
+      description: "The selected movie was added to your watchlist."
+    });
+
+    notification.config({
+      placement: "bottomLeft",
+      bottom: 50,
+      duration: 3
+    });
+  };
+
+  const handleOnclick = (
+    title: string,
+    id: string | number,
+    poster_path: string
+  ) => {
+    if (watchlist.find((movie: { id: React.ReactText }) => movie.id === id)) {
+    } else {
+      dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
+      openNotificationWithIcon("success");
+    }
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -87,16 +115,36 @@ const PopularMovies = (props: PopularMoviesProps) => {
                       </span>
                     </p>
                     <hr></hr>
-                    <Link
-                      to={{
-                        pathname: `/movie/${movie.id}`,
-                        state: {
-                          currentMovie: movie
-                        }
+                    <div
+                      style={{
+                        display:"flex",
+                        justifyContent:"space-between"
                       }}
                     >
-                      View more info
-                    </Link>
+                      <Link
+                        to={{
+                          pathname: `/movie/${movie.id}`,
+                          state: {
+                            currentMovie: movie
+                          }
+                        }}
+                      >
+                        View more info
+                      </Link>
+                      <Button
+                        onClick={() => {
+                          handleOnclick(
+                            movie.title,
+                            movie.id,
+                            movie.poster_path
+                          );
+                        }}
+                        type="primary"
+                      >
+                        <Icon type="plus" />
+                        Add to Watchlist
+                      </Button>
+                    </div>
                   </div>
                 }
               />
