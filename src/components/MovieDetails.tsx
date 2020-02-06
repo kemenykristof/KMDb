@@ -3,6 +3,7 @@ import Icon from "antd/lib/icon";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import { WatchlistContext } from "../contexts/WatchlistContext";
+import { notification } from "antd";
 
 const Container = styled.div`
   display: flex;
@@ -16,9 +17,20 @@ const Title = styled.div`
 `;
 
 const MovieDetails = (props: any) => {
-  const { dispatch, watchlist } = useContext(WatchlistContext);
+  const { dispatch } = useContext(WatchlistContext);
 
-  // TODO : REFACTOR TO USE STATE , FETCH API BY ID
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: "Successfully added!",
+      description: "The selected movie was added to your watchlist."
+    });
+
+    notification.config({
+      placement: "bottomLeft",
+      bottom: 50,
+      duration: 3
+    });
+  };
   const currentMovie = props.location.state;
 
   const result = Object.values(currentMovie);
@@ -73,9 +85,10 @@ const MovieDetails = (props: any) => {
               <p>{data.overview}</p>
             </div>
             <Icon
-              onClick={() =>
-                handleOnclick(data.title, data.id, data.poster_path)
-              }
+              onClick={() => {
+                handleOnclick(data.title, data.id, data.poster_path);
+                openNotificationWithIcon("success");
+              }}
               style={{ fontSize: "30px", cursor: "pointer" }}
               type="plus-circle"
               theme="twoTone"

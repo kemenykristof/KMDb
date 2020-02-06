@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 import styled from "@emotion/styled";
-import { Tooltip } from 'antd';
-import { Rate } from 'antd';
+
+import Rater from "./Rater"
 
 const UList = styled.ul({
   listStyle: "none",
@@ -24,7 +24,6 @@ const List = styled.li({
 
 const Watchlist: React.SFC = props => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
-  console.log(watchlist, "watchlist");
 
   return watchlist.length ? (
     <div>
@@ -49,15 +48,14 @@ const Watchlist: React.SFC = props => {
                 />
               )}
               <span>{movie.title}</span>
-              
+
               <button
                 onClick={() => dispatch({ type: "REMOVE_MOVIE", id: movie.id })}
               >
                 REMOVE
               </button>
-              <Rate />
+                <Rater></Rater>
             </List>
-            
           );
         })}
       </UList>

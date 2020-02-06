@@ -82,17 +82,21 @@ const PopularMovies = (props: PopularMoviesProps) => {
                   <div>
                     <OverviewStyle>{movie.overview}</OverviewStyle>
                     <p>
-                      <Link
-                        to={{
-                          pathname: `/movie/${movie.id}`,
-                          state: {
-                            currentMovie: movie
-                          }
-                        }}
-                      >
-                        View more info
-                      </Link>
+                      <span style={{ color: "goldenrod" }}>
+                        Rating: {movie.vote_average}
+                      </span>
                     </p>
+                    <hr></hr>
+                    <Link
+                      to={{
+                        pathname: `/movie/${movie.id}`,
+                        state: {
+                          currentMovie: movie
+                        }
+                      }}
+                    >
+                      View more info
+                    </Link>
                   </div>
                 }
               />
