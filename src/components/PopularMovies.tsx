@@ -32,7 +32,7 @@ const ImgStyle = styled.img({
 
 interface PopularMoviesProps {}
 
-const PopularMovies = (props: PopularMoviesProps) => {
+const PopularMovies: React.FC<PopularMoviesProps> = (props) => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
   const [popularMovies, setPopularMovies] = useState([]);
   let apiKey = process.env.REACT_APP_API;

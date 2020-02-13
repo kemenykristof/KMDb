@@ -7,8 +7,8 @@ import { Tooltip } from "antd";
 
 const UList = styled.ul({
   listStyle: "none",
-  width: "90%",
-  maxWidth: "40rem",
+  width: "100%",
+  maxWidth: "50rem",
   margin: "2rem auto",
   padding: 0
 });
@@ -20,7 +20,8 @@ const List = styled.li({
   borderRadius: "6px",
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center"
+  alignItems: "center",
+  wordWrap: "break-word"
 });
 
 const TitleStyle = styled.span({
@@ -55,6 +56,7 @@ const Watchlist: React.FC = () => {
                 />
               )}
               <TitleStyle>{movie.title}</TitleStyle>
+              <Rater></Rater>
               <Tooltip title="Remove from watchlist">
                 <Icon
                   onClick={() =>
@@ -66,7 +68,6 @@ const Watchlist: React.FC = () => {
                   style={{ fontSize: "24px" }}
                 />
               </Tooltip>
-              <Rater></Rater>
             </List>
           );
         })}

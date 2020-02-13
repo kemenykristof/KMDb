@@ -20,10 +20,12 @@ const OuterContainer = styled.div({
 
 const Title = styled.div({ display: "flex", justifyContent: "space-between" });
 
-const MovieDetails = props => {
+
+
+const MovieDetails = (props: { location: { state: any; }; }) => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
 
-  const openNotificationWithIcon = type => {
+  const openNotificationWithIcon = (type: string) => {
     notification["success"]({
       message: "Successfully added!",
       description: "The selected movie was added to your watchlist."

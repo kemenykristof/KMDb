@@ -11,7 +11,7 @@ interface MovieCardProps {
   viewMovieInfo: (id: string | number) => void;
 }
 
-const MovieCard = (props: MovieCardProps) => {
+const MovieCard: React.FC<MovieCardProps> = props => {
   return (
     <Card
       onClick={() => props.viewMovieInfo(props.movieId)}

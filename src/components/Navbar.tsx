@@ -31,7 +31,7 @@ const StyledNavlink = styled.div({
 
 interface NavbarProps {}
 
-const Navbar = (props: NavbarProps) => {
+const Navbar: React.FC<NavbarProps> = props => {
   return (
     <Nav>
       <Logo>KMDb</Logo>
