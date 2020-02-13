@@ -30,9 +30,7 @@ const TitleStyle = styled.span({
 });
 
 const Watchlist: React.FC = () => {
-  const watchlistContext = useContext(WatchlistContext);
-  const watchlist = watchlistContext?.watchlist ?? []
-  const dispatch = watchlistContext?.dispatch ?? (()=>{console.log('dispatch not initialized')})
+  const { watchlist, dispatch } = useContext(WatchlistContext);
 
   return watchlist.length ? (
     <div>

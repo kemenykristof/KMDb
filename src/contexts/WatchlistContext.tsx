@@ -7,9 +7,8 @@ type ContextType = {
   dispatch: React.Dispatch<Action>;
 };
 
-export const WatchlistContext = createContext<ContextType | null>(null);
+export const WatchlistContext = createContext<ContextType>({ watchlist: [], dispatch: () => console.log('dispatch not initialized') });
 
-export const WatchListContextConsumer = WatchlistContext.Provider;
 
 const WatchlistContextProvider = (props: { children: React.ReactNode }) => {
   const [watchlist, dispatch] = useReducer(watchlistReducer, [], () => {

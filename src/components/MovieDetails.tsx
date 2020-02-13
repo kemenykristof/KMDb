@@ -20,14 +20,8 @@ const OuterContainer = styled.div({
 
 const Title = styled.div({ display: "flex", justifyContent: "space-between" });
 
-const MovieDetails = (props: any) => {
-  const watchlistContext = useContext(WatchlistContext);
-  const watchlist = watchlistContext?.watchlist ?? [];
-  const dispatch =
-    watchlistContext?.dispatch ??
-    (() => {
-      console.log("dispatch not initialized");
-    });
+const MovieDetails = props => {
+  const { watchlist, dispatch } = useContext(WatchlistContext);
 
   const openNotificationWithIcon = type => {
     notification["success"]({

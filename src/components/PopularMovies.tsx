@@ -33,9 +33,7 @@ const ImgStyle = styled.img({
 interface PopularMoviesProps {}
 
 const PopularMovies = (props: PopularMoviesProps) => {
-  const watchlistContext = useContext(WatchlistContext);
-  const watchlist = watchlistContext?.watchlist ?? []
-  const dispatch = watchlistContext?.dispatch ?? (()=>{console.log('dispatch not initialized')})
+  const { watchlist, dispatch } = useContext(WatchlistContext);
   const [popularMovies, setPopularMovies] = useState([]);
   let apiKey = process.env.REACT_APP_API;
 

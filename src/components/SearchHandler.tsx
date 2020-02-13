@@ -2,16 +2,17 @@ import React, { Component, FormEvent } from "react";
 import SearchField from "./SearchField";
 import SearchedMovieList from "./SearchedMovieList";
 import { Pagination } from "antd";
+import { Movie } from "../interfaces/types";
 
 interface Props {}
 
 interface State {
-  movies: any;
+  movies: Movie[];
   searchTerm: string;
   totalResults: number;
   currentPage: number;
   moviesPerPage: number;
-  currentMovie: any;
+  currentMovie: Movie | null;
 }
 
 class SearchHandler extends Component<Props, State> {
