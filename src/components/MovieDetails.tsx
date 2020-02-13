@@ -21,7 +21,13 @@ const Container2 = styled.div({
 const Title = styled.div({ display: "flex", justifyContent: "space-between" });
 
 const MovieDetails = (props: any) => {
-  const { dispatch, watchlist } = useContext(WatchlistContext);
+  const watchlistContext = useContext(WatchlistContext);
+  const watchlist = watchlistContext?.watchlist ?? [];
+  const dispatch =
+    watchlistContext?.dispatch ??
+    (() => {
+      console.log("dispatch not initialized");
+    });
   console.log(watchlist);
 
   const openNotificationWithIcon = type => {

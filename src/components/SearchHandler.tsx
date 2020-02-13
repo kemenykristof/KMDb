@@ -52,17 +52,17 @@ class SearchHandler extends Component<Props, State> {
   };
 
   getPage = async (pageNumber: number) => {
-    fetch(
+    const rowData = await fetch(
+      
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
     )
-      .then(data => data.json())
-      .then(data => {
+    const data = await rowData.json();
         this.setState({
           movies: [...data.results],
           totalResults: data.total_results,
           currentPage: pageNumber
         });
-      });
+
   };
 
   viewMovieInfo = (id: string | number) => {
