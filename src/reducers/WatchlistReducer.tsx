@@ -1,6 +1,6 @@
 import { Movie } from "../interfaces/types";
 
-export type Actions =
+export type Action =
   | {
       type: "ADD_MOVIE";
       movie: Movie;
@@ -10,7 +10,7 @@ export type Actions =
       id: string | number;
     };
 
-export const watchlistReducer = (state: Movie[], action: Actions) => {
+export const watchlistReducer = (state: Movie[], action: Action) => {
   switch (action.type) {
     case "ADD_MOVIE":
       return [

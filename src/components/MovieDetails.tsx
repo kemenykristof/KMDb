@@ -5,13 +5,13 @@ import { NavLink } from "react-router-dom";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 import { notification } from "antd";
 
-const Container = styled.div({
+const InnerContainer = styled.div({
   flexDirection: "column",
   display: "flex",
   justifyContent: "center"
 });
 
-const Container2 = styled.div({
+const OuterContainer = styled.div({
   width: "800px",
   margin: "auto",
   justifyContent: "center",
@@ -28,7 +28,6 @@ const MovieDetails = (props: any) => {
     (() => {
       console.log("dispatch not initialized");
     });
-  console.log(watchlist);
 
   const openNotificationWithIcon = type => {
     notification["success"]({
@@ -67,10 +66,10 @@ const MovieDetails = (props: any) => {
           <span style={{ marginLeft: 10 }}>Go back</span>
         </div>
       </NavLink>
-      <Container2>
-        {result.map((data: any, index: number) => {
+      <OuterContainer>
+        {result.map((data: any) => {
           return (
-            <Container key={index}>
+            <InnerContainer key={data.id}>
               <Title>
                 <span>
                   <span style={{ fontSize: 25, fontWeight: "bold" }}>
@@ -113,10 +112,10 @@ const MovieDetails = (props: any) => {
                 <Icon type="plus" />
                 Add to Watchlist
               </Button>
-            </Container>
+            </InnerContainer>
           );
         })}
-      </Container2>
+      </OuterContainer>
     </div>
   );
 };
