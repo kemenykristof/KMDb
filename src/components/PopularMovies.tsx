@@ -83,7 +83,7 @@ const PopularMovies = (props: PopularMoviesProps) => {
       <h1>Popular movies</h1>
       <MovieContainer>
         {popularMovies.map((movie: any, index: number) => (
-          <div key={index}>
+          <div key={movie.id}>
             <Card
               hoverable
               style={{

@@ -52,7 +52,7 @@ const SearchedMovieList = (props: SearchedMovieProps) => {
     <ListContainer>
       <UList>
         {props.movies.map((movie: any, index: number) => (
-          <List key={index}>
+          <List key={movie.id}>
             {movie.poster_path == null ? (
               <img
                 className=""
