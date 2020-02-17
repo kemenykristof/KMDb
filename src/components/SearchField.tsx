@@ -12,10 +12,10 @@ const SearchWrapper = styled.div({
 
 interface SearchFieldProps {
   handleSearch: (event: FormEvent<HTMLFormElement>) => void;
-  handleChange: (e) => void;
+  handleChange: (e: any) => void;
 }
 
-const SearchField:React.FC<SearchFieldProps> = (props) => {
+const SearchField: React.FC<SearchFieldProps> = props => {
   return (
     <SearchWrapper>
       <section>

@@ -53,11 +53,13 @@ const PopularMovies: React.FC<PopularMoviesProps> = props => {
         setPopularMovies(data.results);
         console.log(data, "popular movies");
       } catch (error) {
+        setIsError(true);
         console.log(
           error,
           "something went wrong when fetching popular movies!"
         );
       }
+      setIsLoading(false);
     };
     fetchPopularMovies();
   }, [apiKey]);
@@ -90,8 +92,9 @@ const PopularMovies: React.FC<PopularMoviesProps> = props => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <h1>Popular movies</h1>
+      {isError && <div>Something went wrong ...</div>}
       <MovieContainer>
-        {popularMovies.map((movie: any, index: number) => (
+        {popularMovies.map((movie: any) => (
           <div key={movie.id}>
             <Card
               hoverable

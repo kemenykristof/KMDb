@@ -20,9 +20,7 @@ const OuterContainer = styled.div({
 
 const Title = styled.div({ display: "flex", justifyContent: "space-between" });
 
-
-
-const MovieDetails = (props: { location: { state: any; }; }) => {
+const MovieDetails = (props: { location: { state: any } }) => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
 
   const openNotificationWithIcon = (type: string) => {
