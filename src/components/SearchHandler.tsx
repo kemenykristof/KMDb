@@ -41,7 +41,7 @@ class SearchHandler extends Component<Props, State> {
         totalResults: data.total_results
       });
     } catch (error) {
-      console.log("error, something went wrong");
+      console.log(error,"error, something went wrong");
     }
   };
 

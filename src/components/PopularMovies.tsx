@@ -35,20 +35,31 @@ interface PopularMoviesProps {}
 const PopularMovies: React.FC<PopularMoviesProps> = props => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
   const [popularMovies, setPopularMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   let apiKey = process.env.REACT_APP_API;
 
   useEffect(() => {
-    const fetchData = async () => {
-      await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
-      )
-        .then(data => data.json())
-        .then(data => {
-          setPopularMovies(data.results);
-          console.log(data, "data");
-        });
+    const fetchPopularMovies = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
+        );
+        const data = await result.json();
+        setPopularMovies(data.results);
+        console.log(data, "popular movies");
+      } catch (error) {
+        console.log(
+          error,
+          "something went wrong when fetching popular movies!"
+        );
+      }
     };
-    fetchData();
+    fetchPopularMovies();
   }, [apiKey]);
 
   const openNotificationWithIcon = type => {
@@ -73,7 +84,6 @@ const PopularMovies: React.FC<PopularMoviesProps> = props => {
     } else {
       dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
       openNotificationWithIcon("success");
-      
     }
   };
 
