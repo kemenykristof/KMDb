@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useEffect } from "react";
 import { watchlistReducer, Action } from "../reducers/WatchlistReducer";
-import { Movie } from "../interfaces/types";
+import { Movie } from "../types/types";
 
 type ContextType = {
   watchlist: Movie[];

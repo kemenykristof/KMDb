@@ -32,7 +32,7 @@ const ImgStyle = styled.img({
 
 interface PopularMoviesProps {}
 
-const PopularMovies: React.FC<PopularMoviesProps> = (props) => {
+const PopularMovies: React.FC<PopularMoviesProps> = props => {
   const { watchlist, dispatch } = useContext(WatchlistContext);
   const [popularMovies, setPopularMovies] = useState([]);
   let apiKey = process.env.REACT_APP_API;
@@ -73,6 +73,7 @@ const PopularMovies: React.FC<PopularMoviesProps> = (props) => {
     } else {
       dispatch({ type: "ADD_MOVIE", movie: { title, id, poster_path } });
       openNotificationWithIcon("success");
+      
     }
   };
 
@@ -117,8 +118,8 @@ const PopularMovies: React.FC<PopularMoviesProps> = (props) => {
                     <hr></hr>
                     <div
                       style={{
-                        display:"flex",
-                        justifyContent:"space-between"
+                        display: "flex",
+                        justifyContent: "space-between"
                       }}
                     >
                       <Link

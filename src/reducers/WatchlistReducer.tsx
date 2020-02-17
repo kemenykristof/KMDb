@@ -1,4 +1,4 @@
-import { Movie } from "../interfaces/types";
+import { Movie } from "../types/types";
 
 export type Action =
   | {

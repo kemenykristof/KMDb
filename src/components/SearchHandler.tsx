@@ -2,7 +2,7 @@ import React, { Component, FormEvent } from "react";
 import SearchField from "./SearchField";
 import SearchedMovieList from "./SearchedMovieList";
 import { Pagination } from "antd";
-import { Movie } from "../interfaces/types";
+import { Movie } from "../types/types";
 
 interface Props {}
 
@@ -30,17 +30,19 @@ class SearchHandler extends Component<Props, State> {
     this.apiKey = process.env.REACT_APP_API;
   }
 
-  searchMovies = async() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
-    )
-      .then(data => data.json())
-      .then(data => {
-        this.setState({
-          movies: [...data.results],
-          totalResults: data.total_results
-        });
+
+  searchMovies = async () => {
+    try {
+      const data = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}`
+      ).then(result => result.json());
+      this.setState({
+        movies: [...data.results],
+        totalResults: data.total_results
       });
+    } catch (error) {
+      console.log("error, something went wrong");
+    }
   };
 
   handleSearch = (e: FormEvent<HTMLFormElement>) => {
@@ -54,16 +56,14 @@ class SearchHandler extends Component<Props, State> {
 
   getPage = async (pageNumber: number) => {
     const rowData = await fetch(
-      
       `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
-    )
+    );
     const data = await rowData.json();
-        this.setState({
-          movies: [...data.results],
-          totalResults: data.total_results,
-          currentPage: pageNumber
-        });
-
+    this.setState({
+      movies: [...data.results],
+      totalResults: data.total_results,
+      currentPage: pageNumber
+    });
   };
 
   viewMovieInfo = (id: string | number) => {
