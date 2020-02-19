@@ -30,7 +30,6 @@ class SearchHandler extends Component<Props, State> {
     this.apiKey = process.env.REACT_APP_API;
   }
 
-
   searchMovies = async () => {
     try {
       const data = await fetch(
@@ -41,7 +40,7 @@ class SearchHandler extends Component<Props, State> {
         totalResults: data.total_results
       });
     } catch (error) {
-      console.log(error,"error, something went wrong");
+      console.log(error, "error, something went wrong");
     }
   };
 
@@ -55,15 +54,19 @@ class SearchHandler extends Component<Props, State> {
   };
 
   getPage = async (pageNumber: number) => {
-    const rowData = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
-    );
-    const data = await rowData.json();
-    this.setState({
-      movies: [...data.results],
-      totalResults: data.total_results,
-      currentPage: pageNumber
-    });
+    try {
+      const rowData = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.state.searchTerm}&language=en-US&page=${pageNumber}`
+      );
+      const data = await rowData.json();
+      this.setState({
+        movies: [...data.results],
+        totalResults: data.total_results,
+        currentPage: pageNumber
+      });
+    } catch (error) {
+      console.log("error getting the requested page");
+    }
   };
 
   viewMovieInfo = (id: string | number) => {

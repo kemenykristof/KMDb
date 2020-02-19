@@ -15,7 +15,7 @@ interface SearchFieldProps {
   handleChange: (e: any) => void;
 }
 
-const SearchField: React.FC<SearchFieldProps> = props => {
+const SearchField: React.FC<SearchFieldProps> = (props) => {
   return (
     <SearchWrapper>
       <section>
