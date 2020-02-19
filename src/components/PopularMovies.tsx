@@ -4,6 +4,7 @@ import { Card, notification } from "antd";
 import { Link } from "react-router-dom";
 import { WatchlistContext } from "../contexts/WatchlistContext";
 import { Button, Icon } from "antd";
+import { Spin } from "antd";
 
 const { Meta } = Card;
 
@@ -28,6 +29,15 @@ const OverviewStyle = styled.p({
 const ImgStyle = styled.img({
   width: "100%",
   height: 330
+});
+
+const CenteredSpin = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  minHeight: " 100vh"
 });
 
 interface PopularMoviesProps {}
@@ -92,8 +102,14 @@ const PopularMovies: React.FC<PopularMoviesProps> = props => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <h1>Popular movies</h1>
+
       {isError && <div>Something went wrong ...</div>}
       <MovieContainer>
+        {isLoading && (
+          <CenteredSpin>
+            <Spin size="large" />
+          </CenteredSpin>
+        )}
         {popularMovies.map((movie: any) => (
           <div key={movie.id}>
             <Card
